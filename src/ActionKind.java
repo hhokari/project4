@@ -2,3 +2,4 @@ enum ActionKind
 {
     ACTIVITY, ANIMATION
 }
+
