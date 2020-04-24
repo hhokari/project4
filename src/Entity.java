@@ -136,7 +136,7 @@ public final class Entity
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(blob.position, target.position)) {
+        if (adjacent(blob.position, target.position)) {
             world.removeEntity(world, target);
             scheduler.unscheduleAllEvents(scheduler, target);
             return true;
@@ -162,7 +162,7 @@ public final class Entity
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(miner.position, target.position)) {
+        if (adjacent(miner.position, target.position)) {
             return true;
         }
         else {
@@ -186,7 +186,7 @@ public final class Entity
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(miner.position, target.position)) {
+        if (adjacent(miner.position, target.position)) {
             miner.resourceCount += 1;
             world.removeEntity(world, target);
             scheduler.unscheduleAllEvents(scheduler, target);
@@ -272,5 +272,10 @@ public final class Entity
         return new Entity(EntityKind.MINER_FULL, id, position, images,
                 resourceLimit, resourceLimit, actionPeriod,
                 animationPeriod);
+    }
+
+    public boolean adjacent(Point p1, Point p2) {
+        return (p1.x == p2.x && Math.abs(p1.y - p2.y) == 1) || (p1.y == p2.y
+                && Math.abs(p1.x - p2.x) == 1);
     }
 }

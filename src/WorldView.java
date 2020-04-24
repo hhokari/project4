@@ -57,7 +57,7 @@ public final class WorldView
             WorldModel world, Point pos)
     {
         if (world.withinBounds(world, pos)) {
-            return Optional.of(Functions.getCurrentImage(world.getBackgroundCell(world, pos)));
+            return Optional.of(Background.getCurrentImage(world.getBackgroundCell(world, pos)));
         }
         else {
             return Optional.empty();
@@ -70,7 +70,7 @@ public final class WorldView
 
             if (viewport.contains(this.viewport, pos)) {
                 Point viewPoint = this.viewport.worldToViewport(this.viewport, pos.x, pos.y);
-                this.screen.image(Functions.getCurrentImage(entity),
+                this.screen.image(Background.getCurrentImage(entity),
                         viewPoint.x * this.tileWidth,
                         viewPoint.y * this.tileHeight);
             }
