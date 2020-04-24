@@ -52,11 +52,11 @@ public final class VirtualWorld extends PApplet
     public void setup() {
         this.imageStore = new ImageStore(
                 createImageColored(TILE_WIDTH, TILE_HEIGHT,
-                                   DEFAULT_IMAGE_COLOR));
+                        DEFAULT_IMAGE_COLOR));
         this.world = new WorldModel(WORLD_ROWS, WORLD_COLS,
-                                    createDefaultBackground(imageStore));
+                createDefaultBackground(imageStore));
         this.view = new WorldView(VIEW_ROWS, VIEW_COLS, this, world, TILE_WIDTH,
-                                  TILE_HEIGHT);
+                TILE_HEIGHT);
         this.scheduler = new EventScheduler(timeScale);
 
         loadImages(IMAGE_LIST_FILE_NAME, imageStore, this);
@@ -70,11 +70,11 @@ public final class VirtualWorld extends PApplet
     public void draw() {
         long time = System.currentTimeMillis();
         if (time >= nextTime) {
-            scheduler.updateOnTime(this.scheduler, time);
+            Functions.updateOnTime(this.scheduler, time);
             nextTime = time + TIMER_ACTION_PERIOD;
         }
 
-        view.drawViewport(view);
+        view.drawViewport();
     }
 
     public void keyPressed() {
@@ -96,14 +96,14 @@ public final class VirtualWorld extends PApplet
                     dx = 1;
                     break;
             }
-            view.shiftView(view, dx, dy);
+            view.shiftView(dx, dy);
         }
     }
 
     public static Background createDefaultBackground(ImageStore imageStore) {
         return new Background(DEFAULT_IMAGE_NAME,
-                              imageStore.getImageList(imageStore,
-                                                     DEFAULT_IMAGE_NAME));
+                Functions.getImageList(imageStore,
+                        DEFAULT_IMAGE_NAME));
     }
 
     public static PImage createImageColored(int width, int height, int color) {
@@ -121,7 +121,7 @@ public final class VirtualWorld extends PApplet
     {
         try {
             Scanner in = new Scanner(new File(filename));
-            imageStore.loadImages(in, imageStore, screen);
+            Functions.loadImages(in, imageStore, screen);
         }
         catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
@@ -144,7 +144,7 @@ public final class VirtualWorld extends PApplet
             WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
         for (Entity entity : world.entities) {
-            scheduler.scheduleActions(entity, scheduler, world, imageStore);
+            Functions.scheduleActions(entity, scheduler, world, imageStore);
         }
     }
 
@@ -169,3 +169,4 @@ public final class VirtualWorld extends PApplet
         PApplet.main(VirtualWorld.class);
     }
 }
+

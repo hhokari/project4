@@ -10,21 +10,8 @@ public final class Viewport
         this.numCols = numCols;
     }
 
-    public Point viewportToWorld(Viewport viewport, int col, int row) {
-        return new Point(col + this.col, row + this.row);
-    }
-
-    public Point worldToViewport(Viewport viewport, int col, int row) {
-        return new Point(col - this.col, row - this.row);
-    }
-
-    public void shift(Viewport viewport, int col, int row) {
-        viewport.col = col;
-        viewport.row = row;
-    }
-
-    public boolean contains(Viewport viewport, Point p) {
-        return p.y >= viewport.row && p.y < viewport.row + this.numRows
-                && p.x >= viewport.col && p.x < viewport.col + this.numCols;
+    public boolean contains(Point p) {
+        return p.y >= this.row && p.y < this.row + this.numRows
+                && p.x >= this.col && p.x < this.col + this.numCols;
     }
 }

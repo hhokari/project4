@@ -26,25 +26,38 @@ public final class WorldView
         this.viewport = new Viewport(numRows, numCols);
     }
 
+    public Point viewportToWorld(Viewport viewport, int col, int row) {
+        return new Point(col + viewport.col, row + viewport.row);
+    }
+
+    public Point worldToViewport(Viewport viewport, int col, int row) {
+        return new Point(col - viewport.col, row - viewport.row);
+    }
+
+    public void shift(Viewport viewport, int col, int row) {
+        viewport.col = col;
+        viewport.row = row;
+    }
+
+    public void shiftView(int colDelta, int rowDelta) {
+        int newCol = clamp(this.viewport.col + colDelta, 0,
+                this.world.numCols - this.viewport.numCols);
+        int newRow = clamp(this.viewport.row + rowDelta, 0,
+                this.world.numRows - this.viewport.numRows);
+
+        this.shift(this.viewport, newCol, newRow);
+    }
+
     public int clamp(int value, int low, int high) {
         return Math.min(high, Math.max(value, low));
     }
 
-    public void shiftView(WorldView view, int colDelta, int rowDelta) {
-        int newCol = clamp(this.viewport.col + colDelta, 0,
-                            this.world.numCols - this.viewport.numCols);
-        int newRow = clamp(this.viewport.row + rowDelta, 0,
-                            this.world.numRows - this.viewport.numCols);
-
-        this.viewport.shift(this.viewport, newCol, newRow);
-    }
-
-    public void drawBackground(WorldView view) {
+    public void drawBackground() {
         for (int row = 0; row < this.viewport.numRows; row++) {
             for (int col = 0; col < this.viewport.numCols; col++) {
-                Point worldPoint = this.viewport.viewportToWorld(this.viewport, col, row);
+                Point worldPoint = this.viewportToWorld(this.viewport, col, row);
                 Optional<PImage> image =
-                        getBackgroundImage(this.world, worldPoint);
+                        world.getBackgroundImage(worldPoint);
                 if (image.isPresent()) {
                     this.screen.image(image.get(), col * this.tileWidth,
                             row * this.tileHeight);
@@ -53,32 +66,21 @@ public final class WorldView
         }
     }
 
-    public Optional<PImage> getBackgroundImage(
-            WorldModel world, Point pos)
-    {
-        if (world.withinBounds(world, pos)) {
-            return Optional.of(Background.getCurrentImage(world.getBackgroundCell(world, pos)));
-        }
-        else {
-            return Optional.empty();
-        }
-    }
-
-    public void drawEntities(WorldView view) {
+    public void drawEntities() {
         for (Entity entity : this.world.entities) {
             Point pos = entity.position;
 
-            if (viewport.contains(this.viewport, pos)) {
-                Point viewPoint = this.viewport.worldToViewport(this.viewport, pos.x, pos.y);
-                this.screen.image(Background.getCurrentImage(entity),
+            if (viewport.contains(pos)) {
+                Point viewPoint = this.worldToViewport(this.viewport, pos.x, pos.y);
+                this.screen.image(Functions.getCurrentImage(entity),
                         viewPoint.x * this.tileWidth,
                         viewPoint.y * this.tileHeight);
             }
         }
     }
 
-    public void drawViewport(WorldView view) {
-        this.drawBackground(this);
-        this.drawEntities(this);
+    public void drawViewport() {
+        this.drawBackground();
+        this.drawEntities();
     }
 }
