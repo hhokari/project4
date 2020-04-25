@@ -1,9 +1,6 @@
 import processing.core.PImage;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public final class WorldModel
 {
@@ -75,7 +72,7 @@ public final class WorldModel
             Point pos)
     {
         if (withinBounds(pos)) {
-            return Optional.of(Background.getCurrentImage(getBackgroundCell(pos)));
+            return Optional.of(getBackgroundCell(pos).getCurrentImage());
         }
         else {
             return Optional.empty();
@@ -132,5 +129,18 @@ public final class WorldModel
         }
 
         return Optional.empty();
+    }
+
+    public Optional<Entity> findNearest(
+            Point pos, EntityKind kind)
+    {
+        List<Entity> ofType = new LinkedList<>();
+        for (Entity entity : entities) {
+            if (entity.kind == kind) {
+                ofType.add(entity);
+            }
+        }
+
+        return Functions.nearestEntity(ofType, pos);
     }
 }

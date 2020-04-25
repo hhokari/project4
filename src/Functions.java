@@ -865,18 +865,18 @@ public final class Functions
         return deltaX * deltaX + deltaY * deltaY;
     }
 
-    public static Optional<Entity> findNearest(
-            WorldModel world, Point pos, EntityKind kind)
-    {
-        List<Entity> ofType = new LinkedList<>();
-        for (Entity entity : world.entities) {
-            if (entity.kind == kind) {
-                ofType.add(entity);
-            }
-        }
-
-        return nearestEntity(ofType, pos);
-    }
+//    public static Optional<Entity> findNearest(
+//            WorldModel world, Point pos, EntityKind kind)
+//    {
+//        List<Entity> ofType = new LinkedList<>();
+//        for (Entity entity : world.entities) {
+//            if (entity.kind == kind) {
+//                ofType.add(entity);
+//            }
+//        }
+//
+//        return nearestEntity(ofType, pos);
+//    }
 
     /*
        Assumes that there is no entity currently occupying the
@@ -1016,16 +1016,16 @@ public final class Functions
 //        view.drawEntities();
 //    }
 
-    public static Action createAnimationAction(Entity entity, int repeatCount) {
-        return new Action(ActionKind.ANIMATION, entity, null, null,
-                repeatCount);
-    }
+//    public static Action createAnimationAction(Entity entity, int repeatCount) {
+//        return new Action(ActionKind.ANIMATION, entity, null, null,
+//                repeatCount);
+//    }
 
-    public static Action createActivityAction(
-            Entity entity, WorldModel world, ImageStore imageStore)
-    {
-        return new Action(ActionKind.ACTIVITY, entity, world, imageStore, 0);
-    }
+//    public static Action createActivityAction(
+//            Entity entity, WorldModel world, ImageStore imageStore)
+//    {
+//        return new Action(ActionKind.ACTIVITY, entity, world, imageStore, 0);
+//    }
 
     public static Entity createBlacksmith(
             String id, Point position, List<PImage> images)

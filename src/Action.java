@@ -68,7 +68,7 @@ public final class Action
 
         if (repeatCount != 1) {
             scheduler.scheduleEvent(entity,
-                    Functions.createAnimationAction(entity,
+                    createAnimationAction(entity,
                             Math.max(repeatCount - 1,
                                     0)),
                     entity.getAnimationPeriod());
@@ -86,4 +86,16 @@ public final class Action
                 break;
         }
     }
+
+    public static Action createAnimationAction(Entity entity, int repeatCount) {
+        return new Action(ActionKind.ANIMATION, entity, null, null,
+                repeatCount);
+    }
+
+    public static Action createActivityAction(
+            Entity entity, WorldModel world, ImageStore imageStore)
+    {
+        return new Action(ActionKind.ACTIVITY, entity, world, imageStore, 0);
+    }
+
 }

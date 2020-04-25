@@ -13,8 +13,8 @@ public final class Background
         this.images = images;
     }
 
-    public static PImage getCurrentImage(Object entity) {
-        return (Background)entity.images.get(
+    public PImage getCurrentImage() {
+        return images.get(
                 (imageIndex));
     }
 
