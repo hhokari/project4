@@ -12,24 +12,25 @@ public final class EventScheduler
         this.timeScale = timeScale;
     }
 
-    public void removePendingEvent(
-            Event event)
-    {
-        List<Event> pending = this.pendingEvents.get(event.entity);
+    public void updateOnTime(long time) {
+        while (!eventQueue.isEmpty()
+                && eventQueue.peek().time < time) {
+            Event next = eventQueue.poll();
 
-        if (pending != null) {
-            pending.remove(event);
+            next.removePendingEvent(this);
+
+            next.action.executeAction(this);
         }
     }
 
     public void unscheduleAllEvents(
             Entity entity)
     {
-        List<Event> pending = this.pendingEvents.remove(entity);
+        List<Event> pending = pendingEvents.remove(entity);
 
         if (pending != null) {
             for (Event event : pending) {
-                this.eventQueue.remove(event);
+                eventQueue.remove(event);
             }
         }
     }
@@ -40,15 +41,18 @@ public final class EventScheduler
             long afterPeriod)
     {
         long time = System.currentTimeMillis() + (long)(afterPeriod
-                * this.timeScale);
+                * timeScale);
         Event event = new Event(action, time, entity);
 
-        this.eventQueue.add(event);
+        eventQueue.add(event);
 
         // update list of pending events for the given entity
-        List<Event> pending = this.pendingEvents.getOrDefault(entity,
+        List<Event> pending = pendingEvents.getOrDefault(entity,
                 new LinkedList<>());
         pending.add(event);
-        this.pendingEvents.put(entity, pending);
+        pendingEvents.put(entity, pending);
     }
+
+
+
 }

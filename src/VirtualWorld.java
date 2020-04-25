@@ -70,7 +70,7 @@ public final class VirtualWorld extends PApplet
     public void draw() {
         long time = System.currentTimeMillis();
         if (time >= nextTime) {
-            Functions.updateOnTime(this.scheduler, time);
+            scheduler.updateOnTime(time);
             nextTime = time + TIMER_ACTION_PERIOD;
         }
 
@@ -144,7 +144,7 @@ public final class VirtualWorld extends PApplet
             WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
         for (Entity entity : world.entities) {
-            Functions.scheduleActions(entity, scheduler, world, imageStore);
+            entity.scheduleActions(scheduler, world, imageStore);
         }
     }
 
@@ -169,4 +169,3 @@ public final class VirtualWorld extends PApplet
         PApplet.main(VirtualWorld.class);
     }
 }
-

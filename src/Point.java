@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public final class Point
 {
     public final int x;
@@ -23,4 +25,5 @@ public final class Point
         result = result * 31 + y;
         return result;
     }
+
 }

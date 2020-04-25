@@ -26,26 +26,13 @@ public final class WorldView
         this.viewport = new Viewport(numRows, numCols);
     }
 
-    public Point viewportToWorld(Viewport viewport, int col, int row) {
-        return new Point(col + viewport.col, row + viewport.row);
-    }
-
-    public Point worldToViewport(Viewport viewport, int col, int row) {
-        return new Point(col - viewport.col, row - viewport.row);
-    }
-
-    public void shift(Viewport viewport, int col, int row) {
-        viewport.col = col;
-        viewport.row = row;
-    }
-
     public void shiftView(int colDelta, int rowDelta) {
-        int newCol = clamp(this.viewport.col + colDelta, 0,
-                this.world.numCols - this.viewport.numCols);
-        int newRow = clamp(this.viewport.row + rowDelta, 0,
-                this.world.numRows - this.viewport.numRows);
+        int newCol = clamp(viewport.col + colDelta, 0,
+                world.numCols - viewport.numCols);
+        int newRow = clamp(viewport.row + rowDelta, 0,
+                world.numRows - viewport.numRows);
 
-        this.shift(this.viewport, newCol, newRow);
+        viewport.shift(newCol, newRow);
     }
 
     public int clamp(int value, int low, int high) {
@@ -53,34 +40,34 @@ public final class WorldView
     }
 
     public void drawBackground() {
-        for (int row = 0; row < this.viewport.numRows; row++) {
-            for (int col = 0; col < this.viewport.numCols; col++) {
-                Point worldPoint = this.viewportToWorld(this.viewport, col, row);
+        for (int row = 0; row < viewport.numRows; row++) {
+            for (int col = 0; col < viewport.numCols; col++) {
+                Point worldPoint = viewport.viewportToWorld(col, row);
                 Optional<PImage> image =
                         world.getBackgroundImage(worldPoint);
                 if (image.isPresent()) {
-                    this.screen.image(image.get(), col * this.tileWidth,
-                            row * this.tileHeight);
+                    screen.image(image.get(), col * tileWidth,
+                            row * tileHeight);
                 }
             }
         }
     }
 
     public void drawEntities() {
-        for (Entity entity : this.world.entities) {
+        for (Entity entity : world.entities) {
             Point pos = entity.position;
 
             if (viewport.contains(pos)) {
-                Point viewPoint = this.worldToViewport(this.viewport, pos.x, pos.y);
-                this.screen.image(Functions.getCurrentImage(entity),
-                        viewPoint.x * this.tileWidth,
-                        viewPoint.y * this.tileHeight);
+                Point viewPoint = viewport.worldToViewport(pos.x, pos.y);
+                screen.image(Functions.getCurrentImage(entity),
+                        viewPoint.x * tileWidth,
+                        viewPoint.y * tileHeight);
             }
         }
     }
 
     public void drawViewport() {
-        this.drawBackground();
-        this.drawEntities();
+        drawBackground();
+        drawEntities();
     }
 }

@@ -12,4 +12,10 @@ public final class Background
         this.id = id;
         this.images = images;
     }
+
+    public static PImage getCurrentImage(Object entity) {
+        return (Background)entity.images.get(
+                (imageIndex));
+    }
+
 }
