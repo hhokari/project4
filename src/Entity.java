@@ -109,13 +109,14 @@ public final class Entity
 
     public boolean moveToFull(
             WorldModel world,
+            Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, position)) {
+        if (Functions.adjacent(position, target.position)) {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, position);
+            Point nextPos = nextPositionMiner(world, target.position);
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -131,17 +132,18 @@ public final class Entity
 
     public boolean moveToNotFull(
             WorldModel world,
+            Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, position)) {
+        if (Functions.adjacent(position, target.position)) {
             resourceCount += 1;
-            removeEntity(world);
-            scheduler.unscheduleAllEvents(this);
+            target.removeEntity(world);
+            scheduler.unscheduleAllEvents(target);
 
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, position);
+            Point nextPos = nextPositionMiner(world, target.position);
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -339,7 +341,7 @@ public final class Entity
         Optional<Entity> notFullTarget =
                 world.findNearest(position, EntityKind.ORE);
 
-        if (!notFullTarget.isPresent() || !moveToNotFull(world,
+        if (!notFullTarget.isPresent() || !moveToNotFull(world, this,
                 scheduler)
                 || !transformNotFull(world, scheduler, imageStore))
         {
@@ -357,7 +359,7 @@ public final class Entity
         Optional<Entity> fullTarget =
                 world.findNearest(position, EntityKind.BLACKSMITH);
 
-        if (fullTarget.isPresent() && moveToFull(world,
+        if (fullTarget.isPresent() && moveToFull(world, this,
                 scheduler))
         {
             transformFull(world, scheduler, imageStore);
