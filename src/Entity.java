@@ -160,7 +160,7 @@ public final class Entity
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        Entity miner = Functions.createMinerNotFull(id, resourceLimit,
+        Entity miner = createMinerNotFull(id, resourceLimit,
                 position, actionPeriod,
                 animationPeriod,
                 images);
@@ -178,7 +178,7 @@ public final class Entity
             ImageStore imageStore)
     {
         if (resourceCount >= resourceLimit) {
-            Entity miner = Functions.createMinerFull(id, resourceLimit,
+            Entity miner = createMinerFull(id, resourceLimit,
                     position, actionPeriod,
                     animationPeriod,
                     images);
@@ -261,7 +261,7 @@ public final class Entity
         Optional<Point> openPt = world.findOpenAround(position);
 
         if (openPt.isPresent()) {
-            Entity ore = Functions.createOre(Functions.ORE_ID_PREFIX + id, openPt.get(),
+            Entity ore = createOre(Functions.ORE_ID_PREFIX + id, openPt.get(),
                     Functions.ORE_CORRUPT_MIN + Functions.rand.nextInt(
                             Functions.ORE_CORRUPT_MAX - Functions.ORE_CORRUPT_MIN),
                     Functions.getImageList(imageStore, Functions.ORE_KEY));
@@ -296,7 +296,7 @@ public final class Entity
             Point tgtPos = blobTarget.get().position;
 
             if (moveToOreBlob(world, scheduler)) {
-                Entity quake = Functions.createQuake(tgtPos,
+                Entity quake = createQuake(tgtPos,
                         Functions.getImageList(imageStore, Functions.QUAKE_KEY));
 
                 world.addEntity(quake);
@@ -320,7 +320,7 @@ public final class Entity
         removeEntity(world);
         scheduler.unscheduleAllEvents(this);
 
-        Entity blob = Functions.createOreBlob(id + Functions.BLOB_ID_SUFFIX, pos,
+        Entity blob = createOreBlob(id + Functions.BLOB_ID_SUFFIX, pos,
                 actionPeriod / Functions.BLOB_PERIOD_SCALE,
                 Functions.BLOB_ANIMATION_MIN + Functions.rand.nextInt(
                         Functions.BLOB_ANIMATION_MAX
@@ -389,6 +389,78 @@ public final class Entity
 
     public PImage getCurrentImage() {
         return (images.get(imageIndex));
+    }
+
+
+    public static Entity createBlacksmith(
+            String id, Point position, List<PImage> images)
+    {
+        return new Entity(EntityKind.BLACKSMITH, id, position, images, 0, 0, 0,
+                0);
+    }
+
+    public static Entity createMinerFull(
+            String id,
+            int resourceLimit,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Entity(EntityKind.MINER_FULL, id, position, images,
+                resourceLimit, resourceLimit, actionPeriod,
+                animationPeriod);
+    }
+
+    public static Entity createMinerNotFull(
+            String id,
+            int resourceLimit,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Entity(EntityKind.MINER_NOT_FULL, id, position, images,
+                resourceLimit, 0, actionPeriod, animationPeriod);
+    }
+
+    public static Entity createObstacle(
+            String id, Point position, List<PImage> images)
+    {
+        return new Entity(EntityKind.OBSTACLE, id, position, images, 0, 0, 0,
+                0);
+    }
+
+    public static Entity createOre(
+            String id, Point position, int actionPeriod, List<PImage> images)
+    {
+        return new Entity(EntityKind.ORE, id, position, images, 0, 0,
+                actionPeriod, 0);
+    }
+
+    public static Entity createOreBlob(
+            String id,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Entity(EntityKind.ORE_BLOB, id, position, images, 0, 0,
+                actionPeriod, animationPeriod);
+    }
+
+    public static Entity createQuake(
+            Point position, List<PImage> images)
+    {
+        return new Entity(EntityKind.QUAKE, Functions.QUAKE_ID, position, images, 0, 0,
+                Functions.QUAKE_ACTION_PERIOD, Functions.QUAKE_ANIMATION_PERIOD);
+    }
+
+    public static Entity createVein(
+            String id, Point position, int actionPeriod, List<PImage> images)
+    {
+        return new Entity(EntityKind.VEIN, id, position, images, 0, 0,
+                actionPeriod, 0);
     }
 
 }
