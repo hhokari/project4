@@ -1,0 +1,55 @@
+CPE 203-03
+Harumi Hokari
+
+methods left in Functions class
+
+- adjacent
+	- At first glance, I was going to put it into the Point class, but I realized it did not fit well in one class
+          over another as it could be associated with multiple classes.
+
+- getImageList
+        - idk imma move this later
+
+- loadImages
+        - will be moved in later projects
+
+- processImageLine
+        - will be moved in later projects
+
+- getImages
+        - will be moved in later projects
+
+- setAlpha
+        - will be moved in later projects
+
+- load
+        - will be moved in later projects
+
+- processLine
+        - will be moved in later projects
+
+- parseBackground
+        - will be moved in later projects 
+
+- parseMiner
+        - will be moved in later projects 
+
+- parseObstacle
+        - will be moved in later projects
+
+- parseOre
+        - will be moved in later projects
+
+- parseSmith
+        - will be moved in later projects
+
+- parseVein
+        - will be moved in later projects
+
+- nearestEntity
+        - This method was left in the Function class because it was hard to draw the line between whether the Point
+          class or the Entity class should determine where the closest entity is.
+
+- distanceSquared
+        - Similar to the adjacent method, I was initially going to move it to the Point class. However, I
+          determined it was compatible with several classes, and there was not a clear choice.
