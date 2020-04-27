@@ -1,7 +1,7 @@
 CPE 203-03
 Harumi Hokari
 
-methods left in Functions class
+methods left in Functions class:
 
 - adjacent
 	- At first glance, I was going to put it into the Point class, but I realized it did not fit well in one class
@@ -53,3 +53,44 @@ methods left in Functions class
 - distanceSquared
         - Similar to the adjacent method, I was initially going to move it to the Point class. However, I
           determined it was compatible with several classes, and there was not a clear choice.
+
+
+methods that could have been placed in multiple classes:
+
+- executeAction
+- executeAnimationAction
+- executeActivityAction
+	1) Action class
+	2) Because they were originally defined as an "action", it made the most sense to place them here.
+
+- executeMinerFullActivity
+- executeMinerNotFullActivity
+- executeOreActivity
+- executeOreBlobActivity
+- executeQuakeActivity
+- executeVeinActivity
+- transformFull
+- transformNotFull
+- moveToFull
+- moveToNotFull
+	1) Entity Class
+	2) Although the scheduler might have authority of the flow of activities, I thought each entity should
+	   determine their own movements.
+
+- scheduleActions
+	1) Entity Class
+	2) Reading the name of the method, my first thought was to move it straight away into the EventScheduler
+	   Class, yet I noticed the different entities were driving the function as different cases are involved.
+
+- moveEntity
+	1) WorldModel Class
+	2) This method definitely took some thought because I assumed the entities should be able to move
+	   themselves right? However, I determined the world essentially acts as something that oversees the various
+  	   entities, so it should be able to affect it.
+
+- createAnimationAction
+- createActivityAction
+	1) Action Class
+	2) Both these methods originally took an Entity object which made sense as each entity possessed their own
+   	   unique animations/ activities. Despite that fact, it was much better suited in the Action Class as it is
+           still in it's basic form, an action.
