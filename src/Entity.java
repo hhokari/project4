@@ -1,19 +1,34 @@
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import processing.core.PImage;
 
 public final class Entity
 {
-    public EntityKind kind;
-    public String id;
+    public final EntityKind kind;
+    private final String id;
     public Point position;
-    public List<PImage> images;
-    public int imageIndex;
-    public int resourceLimit;
-    public int resourceCount;
-    public int actionPeriod;
-    public int animationPeriod;
+    private final List<PImage> images;
+    private int imageIndex;
+    private final int resourceLimit;
+    private int resourceCount;
+    private final int actionPeriod;
+    private final int animationPeriod;
+    private static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
+    private static final String ORE_ID_PREFIX = "ore -- ";
+    private static final int ORE_CORRUPT_MIN = 20000;
+    private static final Random rand = new Random();
+    private static final int ORE_CORRUPT_MAX = 30000;
+    public static final String ORE_KEY = "ore";
+    private static final String BLOB_KEY = "blob";
+    private static final String BLOB_ID_SUFFIX = " -- blob";
+    private static final int BLOB_PERIOD_SCALE = 4;
+    private static final int BLOB_ANIMATION_MIN = 50;
+    private static final int BLOB_ANIMATION_MAX = 150;
+    private static final String QUAKE_ID = "quake";
+    private static final int QUAKE_ACTION_PERIOD = 1100;
+    private static final int QUAKE_ANIMATION_PERIOD = 100;
 
     public Entity(
             EntityKind kind,
@@ -36,11 +51,11 @@ public final class Entity
         this.animationPeriod = animationPeriod;
     }
 
-    public void removeEntity(WorldModel world) {
+    private void removeEntity(WorldModel world) {
         world.removeEntityAt(this.position);
     }
 
-    public Point nextPositionOreBlob(
+    private Point nextPositionOreBlob(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.x - position.x);
@@ -65,7 +80,7 @@ public final class Entity
         return newPos;
     }
 
-    public Point nextPositionMiner(
+    private Point nextPositionMiner(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.x - position.x);
@@ -83,7 +98,7 @@ public final class Entity
         return newPos;
     }
 
-    public boolean moveToOreBlob(
+    private boolean moveToOreBlob(
             WorldModel world,
             EventScheduler scheduler)
     {
@@ -107,7 +122,7 @@ public final class Entity
         }
     }
 
-    public boolean moveToFull(
+    private boolean moveToFull(
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
@@ -130,7 +145,7 @@ public final class Entity
         }
     }
 
-    public boolean moveToNotFull(
+    private boolean moveToNotFull(
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
@@ -157,7 +172,7 @@ public final class Entity
         }
     }
 
-    public void transformFull(
+    private void transformFull(
             WorldModel world,
             EventScheduler scheduler,
             ImageStore imageStore)
@@ -174,7 +189,7 @@ public final class Entity
         scheduleActions(scheduler, world, imageStore);
     }
 
-    public boolean transformNotFull(
+    private boolean transformNotFull(
             WorldModel world,
             EventScheduler scheduler,
             ImageStore imageStore)
@@ -241,7 +256,7 @@ public final class Entity
                         Action.createActivityAction(this , world, imageStore),
                         actionPeriod);
                 scheduler.scheduleEvent(this, Action.createAnimationAction(this,
-                        Functions.QUAKE_ANIMATION_REPEAT_COUNT),
+                        QUAKE_ANIMATION_REPEAT_COUNT),
                         getAnimationPeriod());
                 break;
 
@@ -263,10 +278,10 @@ public final class Entity
         Optional<Point> openPt = world.findOpenAround(position);
 
         if (openPt.isPresent()) {
-            Entity ore = createOre(Functions.ORE_ID_PREFIX + id, openPt.get(),
-                    Functions.ORE_CORRUPT_MIN + Functions.rand.nextInt(
-                            Functions.ORE_CORRUPT_MAX - Functions.ORE_CORRUPT_MIN),
-                    Functions.getImageList(imageStore, Functions.ORE_KEY));
+            Entity ore = createOre(ORE_ID_PREFIX + id, openPt.get(),
+                    ORE_CORRUPT_MIN + rand.nextInt(
+                            ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
+                    Functions.getImageList(imageStore, ORE_KEY));
             world.addEntity(ore);
             scheduleActions(scheduler, world, imageStore);
         }
@@ -322,12 +337,12 @@ public final class Entity
         removeEntity(world);
         scheduler.unscheduleAllEvents(this);
 
-        Entity blob = createOreBlob(id + Functions.BLOB_ID_SUFFIX, pos,
-                actionPeriod / Functions.BLOB_PERIOD_SCALE,
-                Functions.BLOB_ANIMATION_MIN + Functions.rand.nextInt(
-                        Functions.BLOB_ANIMATION_MAX
-                                - Functions.BLOB_ANIMATION_MIN),
-                Functions.getImageList(imageStore, Functions.BLOB_KEY));
+        Entity blob = createOreBlob(id + BLOB_ID_SUFFIX, pos,
+                actionPeriod / BLOB_PERIOD_SCALE,
+                BLOB_ANIMATION_MIN + rand.nextInt(
+                        BLOB_ANIMATION_MAX
+                                - BLOB_ANIMATION_MIN),
+                Functions.getImageList(imageStore, BLOB_KEY));
 
         world.addEntity(blob);
         blob.scheduleActions(scheduler, world, imageStore);
@@ -440,7 +455,7 @@ public final class Entity
                 actionPeriod, 0);
     }
 
-    public static Entity createOreBlob(
+    private static Entity createOreBlob(
             String id,
             Point position,
             int actionPeriod,
@@ -451,11 +466,11 @@ public final class Entity
                 actionPeriod, animationPeriod);
     }
 
-    public static Entity createQuake(
+    private static Entity createQuake(
             Point position, List<PImage> images)
     {
-        return new Entity(EntityKind.QUAKE, Functions.QUAKE_ID, position, images, 0, 0,
-                Functions.QUAKE_ACTION_PERIOD, Functions.QUAKE_ANIMATION_PERIOD);
+        return new Entity(EntityKind.QUAKE, QUAKE_ID, position, images, 0, 0,
+                QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
     }
 
     public static Entity createVein(

@@ -1,10 +1,10 @@
 public final class Action
 {
-    public ActionKind kind;
-    public Entity entity;
-    public WorldModel world;
-    public ImageStore imageStore;
-    public int repeatCount;
+    private final ActionKind kind;
+    private final Entity entity;
+    private final WorldModel world;
+    private final ImageStore imageStore;
+    private final int repeatCount;
 
     public Action(
             ActionKind kind,
@@ -20,7 +20,7 @@ public final class Action
         this.repeatCount = repeatCount;
     }
 
-    public void executeActivityAction(
+    private void executeActivityAction(
             EventScheduler scheduler)
     {
         switch (entity.kind) {
@@ -61,7 +61,7 @@ public final class Action
         }
     }
 
-    public void executeAnimationAction(
+    private void executeAnimationAction(
             EventScheduler scheduler)
     {
         entity.nextImage();

@@ -2,9 +2,9 @@ import java.util.*;
 
 public final class EventScheduler
 {
-    public PriorityQueue<Event> eventQueue;
-    public Map<Entity, List<Event>> pendingEvents;
-    public double timeScale;
+    private final PriorityQueue<Event> eventQueue;
+    public final Map<Entity, List<Event>> pendingEvents;
+    private final double timeScale;
 
     public EventScheduler(double timeScale) {
         this.eventQueue = new PriorityQueue<>(new EventComparator());

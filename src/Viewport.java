@@ -2,8 +2,8 @@ public final class Viewport
 {
     public int row;
     public int col;
-    public int numRows;
-    public int numCols;
+    public final int numRows;
+    public final int numCols;
 
     public Viewport(int numRows, int numCols) {
         this.numRows = numRows;

@@ -4,11 +4,12 @@ import java.util.*;
 
 public final class WorldModel
 {
-    public int numRows;
-    public int numCols;
-    public Background background[][];
-    public Entity occupancy[][];
-    public Set<Entity> entities;
+    public final int numRows;
+    public final int numCols;
+    private final Background background[][];
+    private final Entity occupancy[][];
+    public final Set<Entity> entities;
+    private static final int ORE_REACH = 1;
 
     public WorldModel(int numRows, int numCols, Background defaultBackground) {
         this.numRows = numRows;
@@ -22,21 +23,21 @@ public final class WorldModel
         }
     }
 
-    public void setBackgroundCell(
+    private void setBackgroundCell(
             Point pos, Background background)
     {
         this.background[pos.y][pos.x] = background;
     }
 
-    public Background getBackgroundCell(Point pos) {
+    private Background getBackgroundCell(Point pos) {
         return background[pos.y][pos.x];
     }
 
-    public Entity getOccupancyCell(Point pos) {
+    private Entity getOccupancyCell(Point pos) {
         return occupancy[pos.y][pos.x];
     }
 
-    public void setOccupancyCell(
+    private void setOccupancyCell(
             Point pos, Entity entity)
     {
         occupancy[pos.y][pos.x] = entity;
@@ -51,7 +52,7 @@ public final class WorldModel
         }
     }
 
-    public boolean withinBounds(Point pos) {
+    private boolean withinBounds(Point pos) {
         return pos.y >= 0 && pos.y < numRows && pos.x >= 0
                 && pos.x < numCols;
     }
@@ -119,8 +120,8 @@ public final class WorldModel
     }
 
     public Optional<Point> findOpenAround(Point pos) {
-        for (int dy = -Functions.ORE_REACH; dy <= Functions.ORE_REACH; dy++) {
-            for (int dx = -Functions.ORE_REACH; dx <= Functions.ORE_REACH; dx++) {
+        for (int dy = -ORE_REACH; dy <= ORE_REACH; dy++) {
+            for (int dx = -ORE_REACH; dx <= ORE_REACH; dx++) {
                 Point newPt = new Point(pos.x + dx, pos.y + dy);
                 if (withinBounds(newPt) && !isOccupied(newPt)) {
                     return Optional.of(newPt);
