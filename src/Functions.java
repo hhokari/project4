@@ -593,9 +593,9 @@ public final class Functions
 //        }
 //    }
 
-    public static List<PImage> getImageList(ImageStore imageStore, String key) {
-        return imageStore.images.getOrDefault(key, imageStore.defaultImages);
-    }
+//    public static List<PImage> getImageList(ImageStore imageStore, String key) {
+//        return imageStore.images.getOrDefault(key, imageStore.defaultImages);
+//    }
 
     public static void loadImages(
             Scanner in, ImageStore imageStore, PApplet screen)
@@ -729,7 +729,7 @@ public final class Functions
                     Integer.parseInt(properties[BGND_ROW]));
             String id = properties[BGND_ID];
             world.setBackground(pt,
-                    new Background(id, getImageList(imageStore, id)));
+                    new Background(id, imageStore.getImageList(id)));
         }
 
         return properties.length == BGND_NUM_PROPERTIES;
@@ -747,7 +747,7 @@ public final class Functions
                     pt, Integer.parseInt(
                             properties[MINER_ACTION_PERIOD]), Integer.parseInt(
                             properties[MINER_ANIMATION_PERIOD]),
-                    getImageList(imageStore,
+                    imageStore.getImageList(
                             MINER_KEY));
             world.tryAddEntity(entity);
         }
@@ -762,7 +762,7 @@ public final class Functions
             Point pt = new Point(Integer.parseInt(properties[OBSTACLE_COL]),
                     Integer.parseInt(properties[OBSTACLE_ROW]));
             Entity entity = Entity.createObstacle(properties[OBSTACLE_ID], pt,
-                    getImageList(imageStore,
+                    imageStore.getImageList(
                             OBSTACLE_KEY));
             world.tryAddEntity(entity);
         }
@@ -778,7 +778,7 @@ public final class Functions
                     Integer.parseInt(properties[ORE_ROW]));
             Entity entity = Entity.createOre(properties[ORE_ID], pt, Integer.parseInt(
                     properties[ORE_ACTION_PERIOD]),
-                    getImageList(imageStore, Entity.ORE_KEY));
+                    imageStore.getImageList(Entity.ORE_KEY));
             world.tryAddEntity(entity);
         }
 
@@ -792,7 +792,7 @@ public final class Functions
             Point pt = new Point(Integer.parseInt(properties[SMITH_COL]),
                     Integer.parseInt(properties[SMITH_ROW]));
             Entity entity = Entity.createBlacksmith(properties[SMITH_ID], pt,
-                    getImageList(imageStore,
+                    imageStore.getImageList(
                             SMITH_KEY));
             world.tryAddEntity(entity);
         }
@@ -809,7 +809,7 @@ public final class Functions
             Entity entity = Entity.createVein(properties[VEIN_ID], pt,
                     Integer.parseInt(
                             properties[VEIN_ACTION_PERIOD]),
-                    getImageList(imageStore, VEIN_KEY));
+                    imageStore.getImageList(VEIN_KEY));
             world.tryAddEntity(entity);
         }
 
