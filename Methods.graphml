@@ -18,7 +18,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="103.97969602325259" width="171.12631828058443" x="882.9752721279013" y="1141.7452387659673"/>
+          <y:Geometry height="103.97969602325259" width="171.12631828058443" x="973.7285980243156" y="1141.7452387659673"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="79.841796875" x="45.642260702792214" xml:space="preserve" y="3.0">Background<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -141,10 +141,10 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="361.253225816733" width="329.87273637561776" x="545.1900843966084" y="896.1036598888217"/>
+          <y:Geometry height="381.9513527755644" width="355.3473541711025" x="545.1900843966084" y="896.1036598888218"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="78.37548828125" x="125.74862404718388" xml:space="preserve" y="3.0">WorldModel<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="78.37548828125" x="138.48593294492625" xml:space="preserve" y="3.0">WorldModel<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">+NUMROWS: int
 +NUMCOLS: int
@@ -166,7 +166,9 @@
 +addEntity(entity: Entity)
 +tryAddEntity(entity: Entity)
 +findOpenAround(pos: Point): Optional&lt;Point&gt;
-+findNearest(pos: Point, kind: EntityKind): Optional&lt;Entity&gt;</y:MethodLabel>
++findNearest(pos: Point, kind: EntityKind): Optional&lt;Entity&gt;
+-nearestEntity(entities: List&lt;Entity&gt;, pos: Point): Optional&lt;Entity&gt;                                                           &lt;&lt;static&gt;&gt;
+-distanceSquared(p1: Point, p2: Point): int                                                                                             &lt;&lt;static&gt;&gt;</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -249,7 +251,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="910.6461038496877" width="658.3979704435591" x="674.4752721279015" y="2105.483138294995"/>
+          <y:Geometry height="850.1438865854116" width="658.3979704435591" x="674.4752721279015" y="2105.483138294995"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="66.10546875" x="296.14625084677954" xml:space="preserve" y="3.0">Functions<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -307,9 +309,7 @@
 -parseObstacle(properties: String[], world: WorldModel, imageStore: ImageStore): boolean                      &lt;&lt;static&gt;&gt;
 -parseOre(properties: String[], world: WorldModel, imageStore: ImageStore): boolean                             &lt;&lt;static&gt;&gt;
 -parseSmith(properties: String[], world: WorldModel, imageStore: ImageStore): boolean                          &lt;&lt;static&gt;&gt;
--parseVein(properties: String[], world: WorldModel, imageStore: ImageStore): boolean                            &lt;&lt;static&gt;&gt;
-+nearestEntity(entities: List&lt;Entity&gt;, pos: Point): Optional&lt;Entity&gt;                                                           &lt;&lt;static&gt;&gt;
--distanceSquared(p1: Point, p2: Point): int                                                                                             &lt;&lt;static&gt;&gt;</y:MethodLabel>
+-parseVein(properties: String[], world: WorldModel, imageStore: ImageStore): boolean                            &lt;&lt;static&gt;&gt;</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
