@@ -13,7 +13,7 @@
   <key attr.name="description" attr.type="string" for="edge" id="d9"/>
   <key for="edge" id="d10" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
-    <data key="d0"/>
+    <data key="d0" xml:space="preserve"/>
     <node id="n0">
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
@@ -93,7 +93,8 @@
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">+IMAGES: Map&lt;String, List&lt;PImage&gt;&gt;
 +DEFAULTIMAGES: List&lt;PImage&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+ImageStore(defaultImage: PImage)</y:MethodLabel>
+            <y:MethodLabel xml:space="preserve">+ImageStore(defaultImage: PImage)
++getImageList(key: String): List&lt;PImage&gt;</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -295,7 +296,6 @@
 -BGND_COL: int                                        &lt;&lt;static&gt;&gt;
 -BGND_ROW: int                                      &lt;&lt;static&gt;&gt;</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+adjacent(p1: Point, p2: Point): boolean                                                                                               &lt;&lt;static&gt;&gt;
-+getImageList(imageStore: ImageStore, key: String): List&lt;PImage&gt;                                                       &lt;&lt;static&gt;&gt;
 +loadImages(in: Scanner, imageStore: ImageStore, screen: Papplet)                                                      &lt;&lt;static&gt;&gt;
 -processImageLine(images: Map&lt;String, List&lt;PImage&gt;&gt;, line: String, screen: PApplet)                            &lt;&lt;static&gt;&gt;
 -getImages(images: Map&lt;String, List&lt;PImage&gt;&gt;): List&lt;PImage&gt;                                                           &lt;&lt;static&gt;&gt;
@@ -389,7 +389,7 @@ ANIMATION</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">-removeEntity(world: WorldModel)
 -nextPositionOreBlob(world: WorldModel, destPos: Point): Point
 -nextPositionMiner(world: WorldModel, destPost: Point): Point
--moveToOreBlob(world: WorldModel, scheduler: EventScheduler): boolean
+-moveToOreBlob(world: WorldModel, target: Entity, scheduler: EventScheduler): boolean
 -moveToFull(world: WorldModel, target: Entity, scheduler: EventScheduler): boolean
 -moveToNotFull(world: WorldModel, target: Entity, scheduler: EventScheduler): boolean
 -transformFull(world: WorldModel, scheduler: EventScheduler, imageStore: ImageStore)
