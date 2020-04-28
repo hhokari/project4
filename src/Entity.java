@@ -100,15 +100,16 @@ public final class Entity
 
     private boolean moveToOreBlob(
             WorldModel world,
+            Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, position)) {
-            removeEntity(world);
-            scheduler.unscheduleAllEvents(this);
+        if (Functions.adjacent(position, target.position)) {
+            target.removeEntity(world);
+            scheduler.unscheduleAllEvents(target);
             return true;
         }
         else {
-            Point nextPos = nextPositionOreBlob(world, position);
+            Point nextPos = nextPositionOreBlob(world, target.position);
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -186,7 +187,7 @@ public final class Entity
         scheduler.unscheduleAllEvents(this);
 
         world.addEntity(miner);
-        scheduleActions(scheduler, world, imageStore);
+        miner.scheduleActions(scheduler, world, imageStore);
     }
 
     private boolean transformNotFull(
@@ -204,7 +205,7 @@ public final class Entity
             scheduler.unscheduleAllEvents(this);
 
             world.addEntity(miner);
-            scheduleActions(scheduler, world, imageStore);
+            miner.scheduleActions(scheduler, world, imageStore);
 
             return true;
         }
@@ -283,7 +284,7 @@ public final class Entity
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     Functions.getImageList(imageStore, ORE_KEY));
             world.addEntity(ore);
-            scheduleActions(scheduler, world, imageStore);
+            ore.scheduleActions(scheduler, world, imageStore);
         }
 
         scheduler.scheduleEvent(this,
@@ -312,7 +313,7 @@ public final class Entity
         if (blobTarget.isPresent()) {
             Point tgtPos = blobTarget.get().position;
 
-            if (moveToOreBlob(world, scheduler)) {
+            if (moveToOreBlob(world, blobTarget.get(), scheduler)) {
                 Entity quake = createQuake(tgtPos,
                         Functions.getImageList(imageStore, Functions.QUAKE_KEY));
 
@@ -356,7 +357,7 @@ public final class Entity
         Optional<Entity> notFullTarget =
                 world.findNearest(position, EntityKind.ORE);
 
-        if (!notFullTarget.isPresent() || !moveToNotFull(world, this,
+        if (!notFullTarget.isPresent() || !this.moveToNotFull(world, notFullTarget.get(),
                 scheduler)
                 || !transformNotFull(world, scheduler, imageStore))
         {
@@ -374,7 +375,7 @@ public final class Entity
         Optional<Entity> fullTarget =
                 world.findNearest(position, EntityKind.BLACKSMITH);
 
-        if (fullTarget.isPresent() && moveToFull(world, this,
+        if (fullTarget.isPresent() && moveToFull(world, fullTarget.get(),
                 scheduler))
         {
             transformFull(world, scheduler, imageStore);
