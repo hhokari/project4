@@ -835,35 +835,35 @@ public final class Functions
 //        return withinBounds(world, pos) && world.getOccupancyCell(pos) != null;
 //    }
 
-    public static Optional<Entity> nearestEntity(
-            List<Entity> entities, Point pos)
-    {
-        if (entities.isEmpty()) {
-            return Optional.empty();
-        }
-        else {
-            Entity nearest = entities.get(0);
-            int nearestDistance = distanceSquared(nearest.position, pos);
-
-            for (Entity other : entities) {
-                int otherDistance = distanceSquared(other.position, pos);
-
-                if (otherDistance < nearestDistance) {
-                    nearest = other;
-                    nearestDistance = otherDistance;
-                }
-            }
-
-            return Optional.of(nearest);
-        }
-    }
-
-    private static int distanceSquared(Point p1, Point p2) {
-        int deltaX = p1.x - p2.x;
-        int deltaY = p1.y - p2.y;
-
-        return deltaX * deltaX + deltaY * deltaY;
-    }
+//    public static Optional<Entity> nearestEntity(
+//            List<Entity> entities, Point pos)
+//    {
+//        if (entities.isEmpty()) {
+//            return Optional.empty();
+//        }
+//        else {
+//            Entity nearest = entities.get(0);
+//            int nearestDistance = distanceSquared(nearest.position, pos);
+//
+//            for (Entity other : entities) {
+//                int otherDistance = distanceSquared(other.position, pos);
+//
+//                if (otherDistance < nearestDistance) {
+//                    nearest = other;
+//                    nearestDistance = otherDistance;
+//                }
+//            }
+//
+//            return Optional.of(nearest);
+//        }
+//    }
+//
+//    private static int distanceSquared(Point p1, Point p2) {
+//        int deltaX = p1.x - p2.x;
+//        int deltaY = p1.y - p2.y;
+//
+//        return deltaX * deltaX + deltaY * deltaY;
+//    }
 
 //    public static Optional<Entity> findNearest(
 //            WorldModel world, Point pos, EntityKind kind)
