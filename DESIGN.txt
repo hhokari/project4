@@ -7,9 +7,6 @@ methods left in Functions class:
 	- At first glance, I was going to put it into the Point class, but I realized it did not fit well in one class
           over another as it could be associated with multiple classes.
 
-- getImageList
-        - idk imma move this later
-
 - loadImages
         - will be moved in later projects
 
@@ -45,14 +42,6 @@ methods left in Functions class:
 
 - parseVein
         - will be moved in later projects
-
-- nearestEntity
-        - This method was left in the Function class because it was hard to draw the line between whether the Point
-          class or the Entity class should determine where the closest entity is.
-
-- distanceSquared
-        - Similar to the adjacent method, I was initially going to move it to the Point class. However, I
-          determined it was compatible with several classes, and there was not a clear choice.
 
 
 methods that could have been placed in multiple classes:
