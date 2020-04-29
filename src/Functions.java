@@ -10,24 +10,7 @@ import processing.core.PApplet;
 
 public final class Functions
 {
-//    public static final Random rand = new Random();
-
-//    public static final String BLOB_KEY = "blob";
-//    public static final String BLOB_ID_SUFFIX = " -- blob";
-//    public static final int BLOB_PERIOD_SCALE = 4;
-//    public static final int BLOB_ANIMATION_MIN = 50;
-//    public static final int BLOB_ANIMATION_MAX = 150;
-
-//    public static final String ORE_ID_PREFIX = "ore -- ";
-//    public static final int ORE_CORRUPT_MIN = 20000;
-//    public static final int ORE_CORRUPT_MAX = 30000;
-//    public static final int ORE_REACH = 1;
-
     public static final String QUAKE_KEY = "quake";
-//    public static final String QUAKE_ID = "quake";
-//    public static final int QUAKE_ACTION_PERIOD = 1100;
-//    public static final int QUAKE_ANIMATION_PERIOD = 100;
-//    public static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
 
     private static final int COLOR_MASK = 0xffffff;
     private static final int KEYED_IMAGE_MIN = 5;
@@ -58,7 +41,6 @@ public final class Functions
     private static final int OBSTACLE_COL = 2;
     private static final int OBSTACLE_ROW = 3;
 
-//    public static final String ORE_KEY = "ore";
     private static final int ORE_NUM_PROPERTIES = 5;
     private static final int ORE_ID = 1;
     private static final int ORE_COL = 2;
