@@ -10,12 +10,12 @@ public final class Viewport
         this.numCols = numCols;
     }
 
-    public Point viewportToWorld(int col, int row) {
-        return new Point(col + col, row + row);
+    public Point viewportToWorld(Viewport viewport, int col, int row) {
+        return new Point(col + viewport.col, row + viewport.row);
     }
 
-    public Point worldToViewport(int col, int row) {
-        return new Point(col - this.col, row - this.row);
+    public Point worldToViewport(Viewport viewport, int col, int row) {
+        return new Point(col - viewport.col, row - viewport.row);
     }
 
     public void shift(int col, int row) {

@@ -42,7 +42,7 @@ public final class WorldView
     private void drawBackground() {
         for (int row = 0; row < viewport.numRows; row++) {
             for (int col = 0; col < viewport.numCols; col++) {
-                Point worldPoint = viewport.viewportToWorld(col, row);
+                Point worldPoint = viewport.viewportToWorld(viewport, col, row);
                 Optional<PImage> image =
                         world.getBackgroundImage(worldPoint);
                 if (image.isPresent()) {
@@ -58,7 +58,7 @@ public final class WorldView
             Point pos = entity.position;
 
             if (viewport.contains(pos)) {
-                Point viewPoint = viewport.worldToViewport(pos.x, pos.y);
+                Point viewPoint = viewport.worldToViewport(viewport, pos.x, pos.y);
                 screen.image(entity.getCurrentImage(),
                         viewPoint.x * tileWidth,
                         viewPoint.y * tileHeight);
