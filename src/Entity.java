@@ -8,7 +8,7 @@ public final class Entity
 {
     private final EntityKind kind;
     private final String id;
-    public Point position;
+    private Point position;
     private final List<PImage> images;
     private int imageIndex;
     private final int resourceLimit;
@@ -484,5 +484,15 @@ public final class Entity
     public EntityKind getKind()
     {
         return kind;
+    }
+
+    public Point getPosition()
+    {
+        return position;
+    }
+
+    public void setPosition(Point position)
+    {
+        this.position = position;
     }
 }

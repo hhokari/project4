@@ -55,7 +55,7 @@ public final class WorldView
 
     private void drawEntities() {
         for (Entity entity : world.getentities()) {
-            Point pos = entity.position;
+            Point pos = entity.getPosition();
 
             if (viewport.contains(pos)) {
                 Point viewPoint = viewport.worldToViewport(viewport, pos.x, pos.y);

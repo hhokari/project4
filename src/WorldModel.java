@@ -86,31 +86,31 @@ public final class WorldModel
 
             /* This moves the entity just outside of the grid for
              * debugging purposes. */
-            entity.position = new Point(-1, -1);
+            entity.setPosition(new Point(-1, -1));
             entities.remove(entity);
             setOccupancyCell(pos, null);
         }
     }
 
     public void moveEntity(Entity entity, Point pos) {
-        Point oldPos = entity.position;
+        Point oldPos = entity.getPosition();
         if (withinBounds(pos) && !pos.equals(oldPos)) {
             setOccupancyCell(oldPos, null);
             removeEntityAt(pos);
             setOccupancyCell(pos, entity);
-            entity.position = pos;
+            entity.setPosition(pos);
         }
     }
 
     public void addEntity(Entity entity) {
-        if (withinBounds(entity.position)) {
-            setOccupancyCell(entity.position, entity);
+        if (withinBounds(entity.getPosition())) {
+            setOccupancyCell(entity.getPosition(), entity);
             entities.add(entity);
         }
     }
 
     public void tryAddEntity(Entity entity) {
-        if (isOccupied(entity.position)) {
+        if (isOccupied(entity.getPosition())) {
             // arguably the wrong type of exception, but we are not
             // defining our own exceptions yet
             throw new IllegalArgumentException("position occupied");
@@ -153,10 +153,10 @@ public final class WorldModel
         }
         else {
             Entity nearest = entities.get(0);
-            int nearestDistance = distanceSquared(nearest.position, pos);
+            int nearestDistance = distanceSquared(nearest.getPosition(), pos);
 
             for (Entity other : entities) {
-                int otherDistance = distanceSquared(other.position, pos);
+                int otherDistance = distanceSquared(other.getPosition(), pos);
 
                 if (otherDistance < nearestDistance) {
                     nearest = other;
