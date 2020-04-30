@@ -6,7 +6,7 @@ import processing.core.PImage;
 
 public final class Entity
 {
-    public final EntityKind kind;
+    private final EntityKind kind;
     private final String id;
     public Point position;
     private final List<PImage> images;
@@ -63,14 +63,14 @@ public final class Entity
 
         Optional<Entity> occupant = world.getOccupant(newPos);
 
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().kind
+        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getKind()
                 == EntityKind.ORE)))
         {
             int vert = Integer.signum(destPos.y - position.y);
             newPos = new Point(position.x, position.y + vert);
             occupant = world.getOccupant(newPos);
 
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().kind
+            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getKind()
                     == EntityKind.ORE)))
             {
                 newPos = position;
@@ -218,7 +218,7 @@ public final class Entity
             WorldModel world,
             ImageStore imageStore)
     {
-        switch (kind) {
+        switch (getKind()) {
             case MINER_FULL:
                 scheduler.scheduleEvent(this,
                         Action.createActivityAction(this, world, imageStore),
@@ -401,7 +401,7 @@ public final class Entity
             default:
                 throw new UnsupportedOperationException(
                         String.format("getAnimationPeriod not supported for %s",
-                                kind));
+                                getKind()));
         }
     }
 
@@ -481,4 +481,8 @@ public final class Entity
                 actionPeriod, 0);
     }
 
+    public EntityKind getKind()
+    {
+        return kind;
+    }
 }

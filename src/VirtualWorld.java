@@ -40,7 +40,7 @@ public final class VirtualWorld extends PApplet
     private WorldView view;
     private EventScheduler scheduler;
 
-    public long nextTime;
+    private long nextTime;
 
     public void settings() {
         size(VIEW_WIDTH, VIEW_HEIGHT);
@@ -143,7 +143,7 @@ public final class VirtualWorld extends PApplet
     private static void scheduleActions(
             WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
-        for (Entity entity : world.entities) {
+        for (Entity entity : world.getentities()) {
             entity.scheduleActions(scheduler, world, imageStore);
         }
     }

@@ -2,8 +2,8 @@ import java.util.List;
 
 public final class Event
 {
-    public final Action action;
-    public final long time;
+    private final Action action;
+    private final long time;
     private final Entity entity;
 
     public Event(Action action, long time, Entity entity) {
@@ -15,11 +15,20 @@ public final class Event
     public void removePendingEvent(
             EventScheduler scheduler)
     {
-        List<Event> pending = scheduler.pendingEvents.get(entity);
+        List<Event> pending = scheduler.getPendingEvents().get(entity);
 
         if (pending != null) {
             pending.remove(this);
         }
     }
 
+    public Action getAction()
+    {
+        return action;
+    }
+
+    public long getTime()
+    {
+        return time;
+    }
 }

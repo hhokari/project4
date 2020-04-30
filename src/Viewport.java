@@ -1,9 +1,9 @@
 public final class Viewport
 {
-    public int row;
-    public int col;
-    public final int numRows;
-    public final int numCols;
+    private int row;
+    private int col;
+    private final int numRows;
+    private final int numCols;
 
     public Viewport(int numRows, int numCols) {
         this.numRows = numRows;
@@ -28,5 +28,24 @@ public final class Viewport
                 && p.x >= col && p.x < col + numCols;
     }
 
+    public int getRow()
+    {
+        return row;
+    }
+
+    public int getCol()
+    {
+        return col;
+    }
+
+    public int getNumRows()
+    {
+        return numRows;
+    }
+
+    public int getNumCols()
+    {
+        return numCols;
+    }
 
 }

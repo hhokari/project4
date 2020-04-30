@@ -4,11 +4,11 @@ import java.util.*;
 
 public final class WorldModel
 {
-    public final int numRows;
-    public final int numCols;
+    private final int numRows;
+    private final int numCols;
     private final Background background[][];
     private final Entity occupancy[][];
-    public final Set<Entity> entities;
+    private final Set<Entity> entities;
     private static final int ORE_REACH = 1;
 
     public WorldModel(int numRows, int numCols, Background defaultBackground) {
@@ -137,7 +137,7 @@ public final class WorldModel
     {
         List<Entity> ofType = new LinkedList<>();
         for (Entity entity : entities) {
-            if (entity.kind == kind) {
+            if (entity.getKind() == kind) {
                 ofType.add(entity);
             }
         }
@@ -173,5 +173,19 @@ public final class WorldModel
         int deltaY = p1.y - p2.y;
 
         return deltaX * deltaX + deltaY * deltaY;
+    }
+
+    public int getnumRows()
+    {
+        return numRows;
+    }
+
+    public int getnumCols() {
+        return numCols;
+    }
+
+    public Set<Entity> getentities()
+    {
+        return entities;
     }
 }

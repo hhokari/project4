@@ -3,7 +3,7 @@ import java.util.*;
 public final class EventScheduler
 {
     private final PriorityQueue<Event> eventQueue;
-    public final Map<Entity, List<Event>> pendingEvents;
+    private final Map<Entity, List<Event>> pendingEvents;
     private final double timeScale;
 
     public EventScheduler(double timeScale) {
@@ -14,12 +14,12 @@ public final class EventScheduler
 
     public void updateOnTime(long time) {
         while (!eventQueue.isEmpty()
-                && eventQueue.peek().time < time) {
+                && eventQueue.peek().getTime() < time) {
             Event next = eventQueue.poll();
 
             next.removePendingEvent(this);
 
-            next.action.executeAction(this);
+            next.getAction().executeAction(this);
         }
     }
 
@@ -53,6 +53,9 @@ public final class EventScheduler
         pendingEvents.put(entity, pending);
     }
 
-
+    public Map<Entity, List<Event>> getPendingEvents()
+    {
+        return pendingEvents;
+    }
 
 }
