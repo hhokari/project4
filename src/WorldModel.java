@@ -4,43 +4,43 @@ import java.util.*;
 
 public final class WorldModel
 {
-    private final int numRows;
-    private final int numCols;
-    private final Background background[][];
-    private final Entity occupancy[][];
-    private final Set<Entity> entities;
+    private final int NUMROWS;
+    private final int NUMCOLS;
+    private final Background BACKGROUND[][];
+    private final Entity OCCUPANCY[][];
+    private final Set<Entity> ENTITIES;
     private static final int ORE_REACH = 1;
 
-    public WorldModel(int numRows, int numCols, Background defaultBackground) {
-        this.numRows = numRows;
-        this.numCols = numCols;
-        this.background = new Background[numRows][numCols];
-        this.occupancy = new Entity[numRows][numCols];
-        this.entities = new HashSet<>();
+    public WorldModel(int NUMROWS, int NUMCOLS, Background defaultBackground) {
+        this.NUMROWS = NUMROWS;
+        this.NUMCOLS = NUMCOLS;
+        this.BACKGROUND = new Background[NUMROWS][NUMCOLS];
+        this.OCCUPANCY = new Entity[NUMROWS][NUMCOLS];
+        this.ENTITIES = new HashSet<>();
 
-        for (int row = 0; row < numRows; row++) {
-            Arrays.fill(this.background[row], defaultBackground);
+        for (int row = 0; row < NUMROWS; row++) {
+            Arrays.fill(this.BACKGROUND[row], defaultBackground);
         }
     }
 
     private void setBackgroundCell(
             Point pos, Background background)
     {
-        this.background[pos.y][pos.x] = background;
+        this.BACKGROUND[pos.y][pos.x] = background;
     }
 
     private Background getBackgroundCell(Point pos) {
-        return background[pos.y][pos.x];
+        return BACKGROUND[pos.y][pos.x];
     }
 
     private Entity getOccupancyCell(Point pos) {
-        return occupancy[pos.y][pos.x];
+        return OCCUPANCY[pos.y][pos.x];
     }
 
     private void setOccupancyCell(
             Point pos, Entity entity)
     {
-        occupancy[pos.y][pos.x] = entity;
+        OCCUPANCY[pos.y][pos.x] = entity;
     }
 
     public Optional<Entity> getOccupant(Point pos) {
@@ -53,8 +53,8 @@ public final class WorldModel
     }
 
     private boolean withinBounds(Point pos) {
-        return pos.y >= 0 && pos.y < numRows && pos.x >= 0
-                && pos.x < numCols;
+        return pos.y >= 0 && pos.y < NUMROWS && pos.x >= 0
+                && pos.x < NUMCOLS;
     }
 
     public boolean isOccupied(Point pos) {
@@ -87,7 +87,7 @@ public final class WorldModel
             /* This moves the entity just outside of the grid for
              * debugging purposes. */
             entity.setPosition(new Point(-1, -1));
-            entities.remove(entity);
+            ENTITIES.remove(entity);
             setOccupancyCell(pos, null);
         }
     }
@@ -105,7 +105,7 @@ public final class WorldModel
     public void addEntity(Entity entity) {
         if (withinBounds(entity.getPosition())) {
             setOccupancyCell(entity.getPosition(), entity);
-            entities.add(entity);
+            ENTITIES.add(entity);
         }
     }
 
@@ -136,7 +136,7 @@ public final class WorldModel
             Point pos, EntityKind kind)
     {
         List<Entity> ofType = new LinkedList<>();
-        for (Entity entity : entities) {
+        for (Entity entity : ENTITIES) {
             if (entity.getKind() == kind) {
                 ofType.add(entity);
             }
@@ -177,15 +177,15 @@ public final class WorldModel
 
     public int getnumRows()
     {
-        return numRows;
+        return NUMROWS;
     }
 
     public int getnumCols() {
-        return numCols;
+        return NUMCOLS;
     }
 
     public Set<Entity> getentities()
     {
-        return entities;
+        return ENTITIES;
     }
 }

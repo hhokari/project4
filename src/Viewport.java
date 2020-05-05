@@ -2,12 +2,12 @@ public final class Viewport
 {
     private int row;
     private int col;
-    private final int numRows;
-    private final int numCols;
+    private final int NUMROWS;
+    private final int NUMCOLS;
 
-    public Viewport(int numRows, int numCols) {
-        this.numRows = numRows;
-        this.numCols = numCols;
+    public Viewport(int NUMROWS, int NUMCOLS) {
+        this.NUMROWS = NUMROWS;
+        this.NUMCOLS = NUMCOLS;
     }
 
     public Point viewportToWorld(Viewport viewport, int col, int row) {
@@ -24,8 +24,8 @@ public final class Viewport
     }
 
     public boolean contains(Point p) {
-        return p.y >= row && p.y < row + numRows
-                && p.x >= col && p.x < col + numCols;
+        return p.y >= row && p.y < row + NUMROWS
+                && p.x >= col && p.x < col + NUMCOLS;
     }
 
     public int getRow()
@@ -40,12 +40,12 @@ public final class Viewport
 
     public int getNumRows()
     {
-        return numRows;
+        return NUMROWS;
     }
 
     public int getNumCols()
     {
-        return numCols;
+        return NUMCOLS;
     }
 
 }
