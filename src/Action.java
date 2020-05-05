@@ -2,77 +2,77 @@
 public final class Action
 {
     private final ActionKind KIND;
-    private final Entity entity;
-    private final WorldModel world;
-    private final ImageStore imageStore;
-    private final int repeatCount;
+    private final Entity ENTITY;
+    private final WorldModel WORLD;
+    private final ImageStore IMAGESTORE;
+    private final int REPEATCOUNT;
 
     public Action(
             ActionKind KIND,
-            Entity entity,
-            WorldModel world,
-            ImageStore imageStore,
-            int repeatCount)
+            Entity ENTITY,
+            WorldModel WORLD,
+            ImageStore IMAGESTORE,
+            int REPEATCOUNT)
     {
         this.KIND = KIND;
-        this.entity = entity;
-        this.world = world;
-        this.imageStore = imageStore;
-        this.repeatCount = repeatCount;
+        this.ENTITY = ENTITY;
+        this.WORLD = WORLD;
+        this.IMAGESTORE = IMAGESTORE;
+        this.REPEATCOUNT = REPEATCOUNT;
     }
 
     private void executeActivityAction(
             EventScheduler scheduler)
     {
-        switch (entity.getKind()) {
+        switch (ENTITY.getKind()) {
             case MINER_FULL:
-                entity.executeMinerFullActivity(world,
-                        imageStore, scheduler);
+                ENTITY.executeMinerFullActivity(WORLD,
+                        IMAGESTORE, scheduler);
                 break;
 
             case MINER_NOT_FULL:
-                entity.executeMinerNotFullActivity(world,
-                        imageStore, scheduler);
+                ENTITY.executeMinerNotFullActivity(WORLD,
+                        IMAGESTORE, scheduler);
                 break;
 
             case ORE:
-                entity.executeOreActivity(world,
-                        imageStore, scheduler);
+                ENTITY.executeOreActivity(WORLD,
+                        IMAGESTORE, scheduler);
                 break;
 
             case ORE_BLOB:
-                entity.executeOreBlobActivity(world,
-                        imageStore, scheduler);
+                ENTITY.executeOreBlobActivity(WORLD,
+                        IMAGESTORE, scheduler);
                 break;
 
             case QUAKE:
-                entity.executeQuakeActivity(world,
-                        imageStore, scheduler);
+                ENTITY.executeQuakeActivity(WORLD,
+                        IMAGESTORE, scheduler);
                 break;
 
             case VEIN:
-                entity.executeVeinActivity(world,
-                        imageStore, scheduler);
+                ENTITY.executeVeinActivity(WORLD,
+                        IMAGESTORE, scheduler);
                 break;
 
             default:
                 throw new UnsupportedOperationException(String.format(
                         "executeActivityAction not supported for %s",
-                        entity.getKind()));
+                        ENTITY.getKind()));
         }
     }
 
     private void executeAnimationAction(
             EventScheduler scheduler)
     {
-        entity.nextImage();
+        ENTITY.nextImage();
 
-        if (repeatCount != 1) {
-            scheduler.scheduleEvent(entity,
-                    createAnimationAction(entity,
-                            Math.max(repeatCount - 1,
+        if (REPEATCOUNT != 1) {
+            scheduler.scheduleEvent(ENTITY,
+                    createAnimationAction(ENTITY,
+                            Math.max(REPEATCOUNT - 1,
                                     0)),
-                    entity.getAnimationPeriod());
+                    ENTITY.getAnimationPeriod());
         }
     }
 
