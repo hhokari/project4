@@ -5,16 +5,16 @@ import processing.core.PImage;
 public final class Background
 {
     private String id;
-    private final List<PImage> images;
+    private final List<PImage> IMAGES;
     private int imageIndex;
 
-    public Background(String id, List<PImage> images) {
+    public Background(String id, List<PImage> IMAGES) {
         this.id = id;
-        this.images = images;
+        this.IMAGES = IMAGES;
     }
 
     public PImage getCurrentImage() {
-        return images.get(
+        return IMAGES.get(
                 (imageIndex));
     }
 

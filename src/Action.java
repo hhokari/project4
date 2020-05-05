@@ -1,19 +1,20 @@
+
 public final class Action
 {
-    private final ActionKind kind;
+    private final ActionKind KIND;
     private final Entity entity;
     private final WorldModel world;
     private final ImageStore imageStore;
     private final int repeatCount;
 
     public Action(
-            ActionKind kind,
+            ActionKind KIND,
             Entity entity,
             WorldModel world,
             ImageStore imageStore,
             int repeatCount)
     {
-        this.kind = kind;
+        this.KIND = KIND;
         this.entity = entity;
         this.world = world;
         this.imageStore = imageStore;
@@ -76,7 +77,7 @@ public final class Action
     }
 
     public void executeAction(EventScheduler scheduler) {
-        switch (kind) {
+        switch (KIND) {
             case ACTIVITY:
                 executeActivityAction(scheduler);
                 break;

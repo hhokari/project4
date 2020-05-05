@@ -2,20 +2,20 @@ import java.util.*;
 
 public final class EventScheduler
 {
-    private final PriorityQueue<Event> eventQueue;
-    private final Map<Entity, List<Event>> pendingEvents;
-    private final double timeScale;
+    private final PriorityQueue<Event> EVENTQUEUE;
+    private final Map<Entity, List<Event>> PENDINGEVENTS;
+    private final double TIMESCALE;
 
-    public EventScheduler(double timeScale) {
-        this.eventQueue = new PriorityQueue<>(new EventComparator());
-        this.pendingEvents = new HashMap<>();
-        this.timeScale = timeScale;
+    public EventScheduler(double TIMESCALE) {
+        this.EVENTQUEUE = new PriorityQueue<>(new EventComparator());
+        this.PENDINGEVENTS = new HashMap<>();
+        this.TIMESCALE = TIMESCALE;
     }
 
     public void updateOnTime(long time) {
-        while (!eventQueue.isEmpty()
-                && eventQueue.peek().getTime() < time) {
-            Event next = eventQueue.poll();
+        while (!EVENTQUEUE.isEmpty()
+                && EVENTQUEUE.peek().getTime() < time) {
+            Event next = EVENTQUEUE.poll();
 
             next.removePendingEvent(this);
 
@@ -26,11 +26,11 @@ public final class EventScheduler
     public void unscheduleAllEvents(
             Entity entity)
     {
-        List<Event> pending = pendingEvents.remove(entity);
+        List<Event> pending = PENDINGEVENTS.remove(entity);
 
         if (pending != null) {
             for (Event event : pending) {
-                eventQueue.remove(event);
+                EVENTQUEUE.remove(event);
             }
         }
     }
@@ -41,21 +41,21 @@ public final class EventScheduler
             long afterPeriod)
     {
         long time = System.currentTimeMillis() + (long)(afterPeriod
-                * timeScale);
+                * TIMESCALE);
         Event event = new Event(action, time, entity);
 
-        eventQueue.add(event);
+        EVENTQUEUE.add(event);
 
         // update list of pending events for the given entity
-        List<Event> pending = pendingEvents.getOrDefault(entity,
+        List<Event> pending = PENDINGEVENTS.getOrDefault(entity,
                 new LinkedList<>());
         pending.add(event);
-        pendingEvents.put(entity, pending);
+        PENDINGEVENTS.put(entity, pending);
     }
 
     public Map<Entity, List<Event>> getPendingEvents()
     {
-        return pendingEvents;
+        return PENDINGEVENTS;
     }
 
 }
