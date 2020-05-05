@@ -80,6 +80,10 @@ public final class WorldModel
         }
     }
 
+    public void removeEntity(Entity entity) {
+        removeEntityAt(entity.position);
+    }
+
     public void removeEntityAt(Point pos) {
         if (withinBounds(pos) && getOccupancyCell(pos) != null) {
             Entity entity = getOccupancyCell(pos);

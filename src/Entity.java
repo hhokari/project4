@@ -4,14 +4,13 @@ import java.util.Random;
 
 import processing.core.PImage;
 
-import javax.naming.RefAddr;
 import javax.security.auth.login.AccountNotFoundException;
 
 public final class Entity
 {
     private final EntityKind KIND;
     private final String ID;
-    private Point position;
+    public Point position;
     private final List<PImage> IMAGES ;
     private int imageIndex;
     private final int RESOURCELIMIT;
@@ -54,9 +53,10 @@ public final class Entity
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 
-    private void removeEntity(WorldModel world) {
-        world.removeEntityAt(this.position);
-    }
+//    private void removeEntity(WorldModel world) {
+//        world.removeEntityAt(this.position);
+//    }
+
 
     private Point nextPositionOreBlob(
             WorldModel world, Point destPos)
@@ -107,7 +107,7 @@ public final class Entity
             EventScheduler scheduler)
     {
         if (Functions.adjacent(position, target.position)) {
-            target.removeEntity(world);
+            world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
         }
@@ -156,7 +156,7 @@ public final class Entity
     {
         if (Functions.adjacent(position, target.position)) {
             resourceCount += 1;
-            target.removeEntity(world);
+            world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
 
             return true;
@@ -186,7 +186,7 @@ public final class Entity
                 ANIMATIONPERIOD,
                 IMAGES);
 
-        removeEntity(world);
+        world.removeEntity(miner);
         scheduler.unscheduleAllEvents(this);
 
         world.addEntity(miner);
@@ -204,7 +204,7 @@ public final class Entity
                     ANIMATIONPERIOD,
                     IMAGES);
 
-            removeEntity(world);
+            world.removeEntity(miner);
             scheduler.unscheduleAllEvents(this);
 
             world.addEntity(miner);
@@ -301,7 +301,7 @@ public final class Entity
             EventScheduler scheduler)
     {
         scheduler.unscheduleAllEvents(this);
-        removeEntity(world);
+        world.removeEntity(this);
     }
 
     public void executeOreBlobActivity(
@@ -338,7 +338,7 @@ public final class Entity
     {
         Point pos = position;
 
-        removeEntity(world);
+        world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
         Entity blob = createOreBlob(ID + BLOB_ID_SUFFIX, pos,
