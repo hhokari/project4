@@ -53,11 +53,6 @@ public final class Entity
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 
-//    private void removeEntity(WorldModel world) {
-//        world.removeEntityAt(this.position);
-//    }
-
-
     private Point nextPositionOreBlob(
             WorldModel world, Point destPos)
     {
