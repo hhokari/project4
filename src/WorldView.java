@@ -58,10 +58,10 @@ public final class WorldView
             Point pos = entity.getPosition();
 
             if (VIEWPORT.contains(pos)) {
-                Point viewPoint = VIEWPORT.worldToViewport(VIEWPORT, pos.x, pos.y);
+                Point viewPoint = VIEWPORT.worldToViewport(VIEWPORT, pos.X, pos.Y);
                 SCREEN.image(entity.getCurrentImage(),
-                        viewPoint.x * TILEWIDTH,
-                        viewPoint.y * TILEHEIGHT);
+                        viewPoint.X * TILEWIDTH,
+                        viewPoint.Y * TILEHEIGHT);
             }
         }
     }

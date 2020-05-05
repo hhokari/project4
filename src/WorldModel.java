@@ -26,21 +26,21 @@ public final class WorldModel
     private void setBackgroundCell(
             Point pos, Background background)
     {
-        this.BACKGROUND[pos.y][pos.x] = background;
+        this.BACKGROUND[pos.Y][pos.X] = background;
     }
 
     private Background getBackgroundCell(Point pos) {
-        return BACKGROUND[pos.y][pos.x];
+        return BACKGROUND[pos.Y][pos.X];
     }
 
     private Entity getOccupancyCell(Point pos) {
-        return OCCUPANCY[pos.y][pos.x];
+        return OCCUPANCY[pos.Y][pos.X];
     }
 
     private void setOccupancyCell(
             Point pos, Entity entity)
     {
-        OCCUPANCY[pos.y][pos.x] = entity;
+        OCCUPANCY[pos.Y][pos.X] = entity;
     }
 
     public Optional<Entity> getOccupant(Point pos) {
@@ -53,8 +53,8 @@ public final class WorldModel
     }
 
     private boolean withinBounds(Point pos) {
-        return pos.y >= 0 && pos.y < NUMROWS && pos.x >= 0
-                && pos.x < NUMCOLS;
+        return pos.Y >= 0 && pos.Y < NUMROWS && pos.X >= 0
+                && pos.X < NUMCOLS;
     }
 
     public boolean isOccupied(Point pos) {
@@ -122,7 +122,7 @@ public final class WorldModel
     public Optional<Point> findOpenAround(Point pos) {
         for (int dy = -ORE_REACH; dy <= ORE_REACH; dy++) {
             for (int dx = -ORE_REACH; dx <= ORE_REACH; dx++) {
-                Point newPt = new Point(pos.x + dx, pos.y + dy);
+                Point newPt = new Point(pos.X + dx, pos.Y + dy);
                 if (withinBounds(newPt) && !isOccupied(newPt)) {
                     return Optional.of(newPt);
                 }
@@ -169,8 +169,8 @@ public final class WorldModel
     }
 
     private static int distanceSquared(Point p1, Point p2) {
-        int deltaX = p1.x - p2.x;
-        int deltaY = p1.y - p2.y;
+        int deltaX = p1.X - p2.X;
+        int deltaY = p1.Y - p2.Y;
 
         return deltaX * deltaX + deltaY * deltaY;
     }

@@ -2,27 +2,27 @@ import java.util.Optional;
 
 public final class Point
 {
-    public final int x;
-    public final int y;
+    public final int X;
+    public final int Y;
 
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Point(int X, int Y) {
+        this.X = X;
+        this.Y = Y;
     }
 
     public String toString() {
-        return "(" + x + "," + y + ")";
+        return "(" + X + "," + Y + ")";
     }
 
     public boolean equals(Object other) {
-        return other instanceof Point && ((Point)other).x == this.x
-                && ((Point)other).y == this.y;
+        return other instanceof Point && ((Point)other).X == this.X
+                && ((Point)other).Y == this.Y;
     }
 
     public int hashCode() {
         int result = 17;
-        result = result * 31 + x;
-        result = result * 31 + y;
+        result = result * 31 + X;
+        result = result * 31 + Y;
         return result;
     }
 }

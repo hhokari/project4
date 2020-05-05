@@ -24,8 +24,8 @@ public final class Viewport
     }
 
     public boolean contains(Point p) {
-        return p.y >= row && p.y < row + NUMROWS
-                && p.x >= col && p.x < col + NUMCOLS;
+        return p.Y >= row && p.Y < row + NUMROWS
+                && p.X >= col && p.X < col + NUMCOLS;
     }
 
     public int getRow()
