@@ -170,6 +170,7 @@
 +isOccupied(pos: Point): boolean
 +setBackground(pos: Point, background: Background)
 +getBackgroundImage(pos: Point): Optional&lt;PImage&gt;
++removeEntity(entity: Entity)
 +removeEntityAt(pos: Point)
 +moveEntity(entity: Entity, pos: Point)
 +addEntity(entity: Entity)
@@ -376,7 +377,7 @@ ANIMATION</y:AttributeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">-KIND: EntityKind                                                
 -ID: String                                                         
--position: Point                                                 
++position: Point                                                 
 -IMAGES: List&lt;PImage&gt;                                    
 -imageIndex: int                                                
 -RESOURCELIMIT: int                                         
@@ -397,8 +398,7 @@ ANIMATION</y:AttributeLabel>
 -QUAKE_ID: String                                                &lt;&lt;static&gt;&gt;
 -QUAKE_ACTION_PERIOD: int                                 &lt;&lt;static&gt;&gt;
 -QUAKE_ANIMATION_PERIOD: int                            &lt;&lt;static&gt;&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">-removeEntity(world: WorldModel)
--nextPositionOreBlob(world: WorldModel, destPos: Point): Point
+            <y:MethodLabel xml:space="preserve">-nextPositionOreBlob(world: WorldModel, destPos: Point): Point
 -nextPositionMiner(world: WorldModel, destPost: Point): Point
 -moveToOreBlob(world: WorldModel, target: Entity, scheduler: EventScheduler): boolean
 -moveToFull(world: WorldModel, target: Entity, scheduler: EventScheduler): boolean
