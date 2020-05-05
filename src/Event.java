@@ -2,20 +2,20 @@ import java.util.List;
 
 public final class Event
 {
-    private final Action action;
-    private final long time;
-    private final Entity entity;
+    private final Action ACTION;
+    private final long TIME;
+    private final Entity ENTITY;
 
-    public Event(Action action, long time, Entity entity) {
-        this.action = action;
-        this.time = time;
-        this.entity = entity;
+    public Event(Action ACTION, long TIME, Entity ENTITY) {
+        this.ACTION = ACTION;
+        this.TIME = TIME;
+        this.ENTITY = ENTITY;
     }
 
     public void removePendingEvent(
             EventScheduler scheduler)
     {
-        List<Event> pending = scheduler.getPendingEvents().get(entity);
+        List<Event> pending = scheduler.getPendingEvents().get(ENTITY);
 
         if (pending != null) {
             pending.remove(this);
@@ -24,11 +24,11 @@ public final class Event
 
     public Action getAction()
     {
-        return action;
+        return ACTION;
     }
 
     public long getTime()
     {
-        return time;
+        return TIME;
     }
 }
