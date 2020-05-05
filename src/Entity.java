@@ -10,7 +10,7 @@ public final class Entity
 {
     private final EntityKind KIND;
     private final String ID;
-    public Point position;
+    private Point position;
     private final List<PImage> IMAGES ;
     private int imageIndex;
     private final int RESOURCELIMIT;
@@ -493,4 +493,5 @@ public final class Entity
     {
         this.position = position;
     }
+
 }

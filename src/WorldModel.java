@@ -81,7 +81,7 @@ public final class WorldModel
     }
 
     public void removeEntity(Entity entity) {
-        removeEntityAt(entity.position);
+        removeEntityAt(entity.getPosition());
     }
 
     public void removeEntityAt(Point pos) {
