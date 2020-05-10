@@ -137,7 +137,7 @@ public final class WorldModel
     }
 
     public Optional<Entity> findNearest(
-            Point pos, EntityKind kind)
+            Point pos, Class c)
     {
         List<Entity> ofType = new LinkedList<>();
         for (Entity entity : ENTITIES) {
