@@ -4,7 +4,7 @@ public class  Activity implements Action {
     private final ImageStore IMAGESTORE;
     private final int REPEATCOUNT;
 
-    public Action(
+    public Activity(
             Entity ENTITY,
             WorldModel WORLD,
             ImageStore IMAGESTORE,
@@ -16,7 +16,7 @@ public class  Activity implements Action {
         this.REPEATCOUNT = REPEATCOUNT;
     }
 
-    private void executeAction(
+    public void executeAction(
             EventScheduler scheduler)
     {
         switch (ENTITY.getKind()) {
@@ -57,15 +57,15 @@ public class  Activity implements Action {
         }
     }
 
-    public static Action createAnimationAction(Entity entity, int repeatCount) {
-        return new Action(ActionKind.ANIMATION, entity, null, null,
-                repeatCount);
-    }
-
-    public static Action createActivityAction(
-            Entity entity, WorldModel world, ImageStore imageStore)
-    {
-        return new Action(ActionKind.ACTIVITY, entity, world, imageStore, 0);
-    }
+//    public static Action createAnimationAction(Entity entity, int repeatCount) {
+//        return new Action(ActionKind.ANIMATION, entity, null, null,
+//                repeatCount);
+//    }
+//
+//    public static Action createActivityAction(
+//            Entity entity, WorldModel world, ImageStore imageStore)
+//    {
+//        return new Action(ActionKind.ACTIVITY, entity, world, imageStore, 0);
+//    }
 
 }

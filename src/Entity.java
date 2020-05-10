@@ -219,49 +219,49 @@ public final class Entity
         switch (getKind()) {
             case MINER_FULL:
                 scheduler.scheduleEvent(this,
-                        Action.createActivityAction(this, world, imageStore),
+                        Factory.createActivityAction(this, world, imageStore),
                         ACTIONPERIOD);
                 scheduler.scheduleEvent(this,
-                        Action.createAnimationAction(this, 0),
+                        Factory.createAnimationAction(this, 0),
                         getAnimationPeriod());
                 break;
 
             case MINER_NOT_FULL:
                 scheduler.scheduleEvent(this,
-                        Action.createActivityAction(this, world, imageStore),
+                        Factory.createActivityAction(this, world, imageStore),
                         ACTIONPERIOD);
                 scheduler.scheduleEvent(this,
-                        Action.createAnimationAction(this, 0),
+                        Factory.createAnimationAction(this, 0),
                         getAnimationPeriod());
                 break;
 
             case ORE:
                 scheduler.scheduleEvent(this,
-                        Action.createActivityAction(this, world, imageStore),
+                        Factory.createActivityAction(this, world, imageStore),
                         ACTIONPERIOD);
                 break;
 
             case ORE_BLOB:
                 scheduler.scheduleEvent(this,
-                        Action.createActivityAction(this, world, imageStore),
+                        Factory.createActivityAction(this, world, imageStore),
                         ACTIONPERIOD);
                 scheduler.scheduleEvent(this,
-                        Action.createAnimationAction(this, 0),
+                        Factory.createAnimationAction(this, 0),
                         getAnimationPeriod());
                 break;
 
             case QUAKE:
                 scheduler.scheduleEvent(this,
-                        Action.createActivityAction(this , world, imageStore),
+                        Factory.createActivityAction(this , world, imageStore),
                         ACTIONPERIOD);
-                scheduler.scheduleEvent(this, Action.createAnimationAction(this,
+                scheduler.scheduleEvent(this, Factory.createAnimationAction(this,
                         QUAKE_ANIMATION_REPEAT_COUNT),
                         getAnimationPeriod());
                 break;
 
             case VEIN:
                 scheduler.scheduleEvent(this,
-                        Action.createActivityAction(this, world, imageStore),
+                        Factory.createActivityAction(this, world, imageStore),
                         ACTIONPERIOD);
                 break;
 
@@ -286,7 +286,7 @@ public final class Entity
         }
 
         scheduler.scheduleEvent(this,
-                Action.createActivityAction(this, world, imageStore),
+                Factory.createActivityAction(this, world, imageStore),
                 ACTIONPERIOD);
     }
 
@@ -322,7 +322,7 @@ public final class Entity
         }
 
         scheduler.scheduleEvent(this,
-                Action.createActivityAction(this, world, imageStore),
+                Factory.createActivityAction(this, world, imageStore),
                 nextPeriod);
     }
 
@@ -360,7 +360,7 @@ public final class Entity
                 || !transformNotFull(world, scheduler, imageStore))
         {
             scheduler.scheduleEvent(this,
-                    Action.createActivityAction(this, world, imageStore),
+                    Factory.createActivityAction(this, world, imageStore),
                     ACTIONPERIOD);
         }
     }
@@ -380,7 +380,7 @@ public final class Entity
         }
         else {
             scheduler.scheduleEvent(this,
-                    Action.createActivityAction(this, world, imageStore),
+                    Factory.createActivityAction(this, world, imageStore),
                     ACTIONPERIOD);
         }
     }
