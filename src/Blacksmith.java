@@ -209,19 +209,19 @@ public class Blacksmith implements Entity {
         imageIndex = (imageIndex + 1) % IMAGES.size();
     }
 
-    public int getAnimationPeriod() {
-        switch (KIND) {
-            case MINER_FULL:
-            case MINER_NOT_FULL:
-            case ORE_BLOB:
-            case QUAKE:
-                return ANIMATIONPERIOD;
-            default:
-                throw new UnsupportedOperationException(
-                        String.format("getAnimationPeriod not supported for %s",
-                                getKind()));
-        }
-    }
+//    public int getAnimationPeriod() {
+//        switch (KIND) {
+//            case MINER_FULL:
+//            case MINER_NOT_FULL:
+//            case ORE_BLOB:
+//            case QUAKE:
+//                return ANIMATIONPERIOD;
+//            default:
+//                throw new UnsupportedOperationException(
+//                        String.format("getAnimationPeriod not supported for %s",
+//                                getKind()));
+//        }
+//    }
 
     public PImage getCurrentImage() {
         return (IMAGES.get(imageIndex));
