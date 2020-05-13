@@ -8,25 +8,25 @@ public class Factory {
     private static final int QUAKE_ACTION_PERIOD = 1100;
     private static final int QUAKE_ANIMATION_PERIOD = 100;
 
-    public static Action createAnimationAction(Entity entity, int repeatCount) {
+    public static Action createAnimationAction(Animate entity, int repeatCount) {
         return new Animation(entity, null, null,
                 repeatCount);
     }
 
-    public static Action createActivityAction(
-            Entity entity, WorldModel world, ImageStore imageStore)
+    public static Activity createActivityAction(
+            Execute entity, WorldModel world, ImageStore imageStore)
     {
         return new Activity(entity, world, imageStore, 0);
     }
 
-    public static Entity createBlacksmith(
+    public static Blacksmith createBlacksmith(
             String id, Point position, List<PImage> images)
     {
         return new Blacksmith(id, position, images, 0, 0, 0,
                 0);
     }
 
-    public static Entity createMinerFull(
+    public static Miner_Full createMinerFull(
             String id,
             int resourceLimit,
             Point position,
@@ -39,7 +39,7 @@ public class Factory {
                 animationPeriod);
     }
 
-    public static Entity createMinerNotFull(
+    public static Miner_Not_Full createMinerNotFull(
             String id,
             int resourceLimit,
             Point position,
@@ -51,21 +51,21 @@ public class Factory {
                 resourceLimit, 0, actionPeriod, animationPeriod);
     }
 
-    public static Entity createObstacle(
+    public static Obstacle createObstacle(
             String id, Point position, List<PImage> images)
     {
         return new Obstacle(id, position, images, 0, 0, 0,
                 0);
     }
 
-    public static Entity createOre(
+    public static Ore createOre(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
         return new Ore(id, position, images, 0, 0,
                 actionPeriod, 0);
     }
 
-    public static Entity createOreBlob(
+    public static Ore_Blob createOreBlob(
             String id,
             Point position,
             int actionPeriod,
@@ -76,14 +76,14 @@ public class Factory {
                 actionPeriod, animationPeriod);
     }
 
-    public static Entity createQuake(
+    public static Quake createQuake(
             Point position, List<PImage> images)
     {
         return new Quake(QUAKE_ID, position, images, 0, 0,
                 QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
     }
 
-    public static Entity createVein(
+    public static Vein createVein(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
         return new Vein(id, position, images, 0, 0,

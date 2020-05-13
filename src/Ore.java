@@ -56,15 +56,15 @@ public class Ore implements Entity, Execute {
 
         Optional<Entity> occupant = world.getOccupant(newPos);
 
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getKind()
-                == EntityKind.ORE)))
+        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
+                == Ore.class)))
         {
             int vert = Integer.signum(destPos.Y - position.Y);
             newPos = new Point(position.X, position.Y + vert);
             occupant = world.getOccupant(newPos);
 
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getKind()
-                    == EntityKind.ORE)))
+            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
+                    == Ore.class)))
             {
                 newPos = position;
             }
@@ -96,13 +96,13 @@ public class Ore implements Entity, Execute {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
         }
         else {
-            Point nextPos = nextPositionOreBlob(world, target.position);
+            Point nextPos = nextPositionOreBlob(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -121,11 +121,11 @@ public class Ore implements Entity, Execute {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.position);
+            Point nextPos = nextPositionMiner(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -144,7 +144,7 @@ public class Ore implements Entity, Execute {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             resourceCount += 1;
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
@@ -152,7 +152,7 @@ public class Ore implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.position);
+            Point nextPos = nextPositionMiner(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);

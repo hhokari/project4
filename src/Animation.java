@@ -1,11 +1,12 @@
 public class Animation implements Action {
-    private final Entity ENTITY;
+    private final Animate ENTITY;
     private final WorldModel WORLD;
     private final ImageStore IMAGESTORE;
     private final int REPEATCOUNT;
+//    private boolean isEntityAnimate = false;
 
     public Animation(
-            Entity ENTITY,
+            Animate ENTITY,
             WorldModel WORLD,
             ImageStore IMAGESTORE,
             int REPEATCOUNT)
@@ -16,6 +17,16 @@ public class Animation implements Action {
         this.REPEATCOUNT = REPEATCOUNT;
     }
 
+//    public Animation(
+//            Animate ENTITY,
+//            WorldModel WORLD,
+//            ImageStore IMAGESTORE,
+//            int REPEATCOUNT)
+//    {
+//        this(ENTITY, WORLD, IMAGESTORE, REPEATCOUNT);
+//        this.isEntityAnimate = true;
+//    }
+
     public void executeAction(
             EventScheduler scheduler)
     {
@@ -23,10 +34,13 @@ public class Animation implements Action {
 
         if (REPEATCOUNT != 1) {
             scheduler.scheduleEvent(ENTITY,
-                    Factory.createAnimationAction(ENTITY,
-                            Math.max(REPEATCOUNT - 1,
-                                    0)),
+                    Factory.createAnimationAction(ENTITY, Math.max(REPEATCOUNT - 1, 0)),
                     ENTITY.getAnimationPeriod());
+
+//                    if (isEntityAnimate) {
+//                        ((Animate) ENTITY).getAnimationPeriod();
+//                    }
+
         }
     }
 

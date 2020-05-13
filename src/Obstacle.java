@@ -55,15 +55,15 @@ public class Obstacle implements Entity {
 
         Optional<Entity> occupant = world.getOccupant(newPos);
 
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getKind()
-                == EntityKind.ORE)))
+        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
+                == Ore.class)))
         {
             int vert = Integer.signum(destPos.Y - position.Y);
             newPos = new Point(position.X, position.Y + vert);
             occupant = world.getOccupant(newPos);
 
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getKind()
-                    == EntityKind.ORE)))
+            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
+                    == Ore.class)))
             {
                 newPos = position;
             }
@@ -95,13 +95,13 @@ public class Obstacle implements Entity {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
         }
         else {
-            Point nextPos = nextPositionOreBlob(world, target.position);
+            Point nextPos = nextPositionOreBlob(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -120,11 +120,11 @@ public class Obstacle implements Entity {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.position);
+            Point nextPos = nextPositionMiner(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -143,7 +143,7 @@ public class Obstacle implements Entity {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             resourceCount += 1;
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
@@ -151,7 +151,7 @@ public class Obstacle implements Entity {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.position);
+            Point nextPos = nextPositionMiner(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -170,7 +170,7 @@ public class Obstacle implements Entity {
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        Entity miner = createMinerNotFull(ID, RESOURCELIMIT,
+        Miner_Not_Full miner = Factory.createMinerNotFull(ID, RESOURCELIMIT,
                 position, ACTIONPERIOD,
                 ANIMATIONPERIOD,
                 IMAGES);
@@ -188,7 +188,7 @@ public class Obstacle implements Entity {
             ImageStore imageStore)
     {
         if (resourceCount >= RESOURCELIMIT) {
-            Entity miner = createMinerFull(ID, RESOURCELIMIT,
+            Miner_Full miner = Factory.createMinerFull(ID, RESOURCELIMIT,
                     position, ACTIONPERIOD,
                     ANIMATIONPERIOD,
                     IMAGES);

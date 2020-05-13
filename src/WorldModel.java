@@ -141,7 +141,7 @@ public final class WorldModel
     {
         List<Entity> ofType = new LinkedList<>();
         for (Entity entity : ENTITIES) {
-            if (entity.getKind() == kind) {
+            if (entity.getClass().equals(c)) {
                 ofType.add(entity);
             }
         }

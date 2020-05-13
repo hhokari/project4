@@ -56,15 +56,15 @@ public class Ore_Blob implements Entity, Execute {
 
         Optional<Entity> occupant = world.getOccupant(newPos);
 
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getKind()
-                == EntityKind.ORE)))
+        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
+                == Ore.class)))
         {
             int vert = Integer.signum(destPos.Y - position.Y);
             newPos = new Point(position.X, position.Y + vert);
             occupant = world.getOccupant(newPos);
 
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getKind()
-                    == EntityKind.ORE)))
+            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
+                    == Ore.class)))
             {
                 newPos = position;
             }
@@ -96,13 +96,13 @@ public class Ore_Blob implements Entity, Execute {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
         }
         else {
-            Point nextPos = nextPositionOreBlob(world, target.position);
+            Point nextPos = nextPositionOreBlob(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -121,11 +121,11 @@ public class Ore_Blob implements Entity, Execute {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.position);
+            Point nextPos = nextPositionMiner(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -144,7 +144,7 @@ public class Ore_Blob implements Entity, Execute {
             Entity target,
             EventScheduler scheduler)
     {
-        if (Functions.adjacent(position, target.position)) {
+        if (Functions.adjacent(position, target.getPosition())) {
             resourceCount += 1;
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
@@ -152,7 +152,7 @@ public class Ore_Blob implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.position);
+            Point nextPos = nextPositionMiner(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -171,7 +171,7 @@ public class Ore_Blob implements Entity, Execute {
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        Entity miner = Factory.createMinerNotFull(ID, RESOURCELIMIT,
+        Miner_Not_Full miner = Factory.createMinerNotFull(ID, RESOURCELIMIT,
                 position, ACTIONPERIOD,
                 ANIMATIONPERIOD,
                 IMAGES);
@@ -215,7 +215,7 @@ public class Ore_Blob implements Entity, Execute {
                         Factory.createActivityAction(this, world, imageStore),
                         ACTIONPERIOD);
                 scheduler.scheduleEvent(this,
-                        Factory.createAnimationAction(this, 0),
+                        Factory.createAnimationAction((Animate) this, 0),
                         getAnimationPeriod());
     }
 
@@ -229,7 +229,7 @@ public class Ore_Blob implements Entity, Execute {
         long nextPeriod = ACTIONPERIOD;
 
         if (blobTarget.isPresent()) {
-            Point tgtPos = blobTarget.get().position;
+            Point tgtPos = blobTarget.get().getPosition();
 
             if (moveToOreBlob(world, blobTarget.get(), scheduler)) {
                 Quake quake = (Quake) Factory.createQuake(tgtPos,
@@ -250,19 +250,9 @@ public class Ore_Blob implements Entity, Execute {
         imageIndex = (imageIndex + 1) % IMAGES.size();
     }
 
-//    public int getAnimationPeriod() {
-//        switch (KIND) {
-//            case MINER_FULL:
-//            case MINER_NOT_FULL:
-//            case ORE_BLOB:
-//            case QUAKE:
-//                return ANIMATIONPERIOD;
-//            default:
-//                throw new UnsupportedOperationException(
-//                        String.format("getAnimationPeriod not supported for %s",
-//                                getKind()));
-//        }
-//    }
+    public int getAnimationPeriod() {
+        return ANIMATIONPERIOD;
+    }
 
     public PImage getCurrentImage() {
         return (IMAGES.get(imageIndex));
