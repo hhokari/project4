@@ -121,7 +121,7 @@ public final class VirtualWorld extends PApplet implements ScheduleActions
     {
         try {
             Scanner in = new Scanner(new File(filename));
-            Functions.loadImages(in, imageStore, screen);
+            ImageActions.loadImages(in, imageStore, screen);
         }
         catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
@@ -133,7 +133,7 @@ public final class VirtualWorld extends PApplet implements ScheduleActions
     {
         try {
             Scanner in = new Scanner(new File(filename));
-            Functions.load(in, world, imageStore);
+            ImageActions.load(in, world, imageStore);
         }
         catch (FileNotFoundException e) {
             System.err.println(e.getMessage());

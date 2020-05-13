@@ -14,20 +14,20 @@ public class Ore_Blob implements Entity, Execute {
     private int resourceCount;
     private final int ACTIONPERIOD;
     private final int ANIMATIONPERIOD;
-    private static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
-    private static final String ORE_ID_PREFIX = "ore -- ";
-    private static final int ORE_CORRUPT_MIN = 20000;
-    private static final Random RAND = new Random();
-    private static final int ORE_CORRUPT_MAX = 30000;
+//    private static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
+//    private static final String ORE_ID_PREFIX = "ore -- ";
+//    private static final int ORE_CORRUPT_MIN = 20000;
+//    private static final Random RAND = new Random();
+//    private static final int ORE_CORRUPT_MAX = 30000;
     public static final String ORE_KEY = "ore";
-    private static final String BLOB_KEY = "blob";
-    private static final String BLOB_ID_SUFFIX = " -- blob";
-    private static final int BLOB_PERIOD_SCALE = 4;
-    private static final int BLOB_ANIMATION_MIN = 50;
-    private static final int BLOB_ANIMATION_MAX = 150;
-    private static final String QUAKE_ID = "quake";
-    private static final int QUAKE_ACTION_PERIOD = 1100;
-    private static final int QUAKE_ANIMATION_PERIOD = 100;
+//    private static final String BLOB_KEY = "blob";
+//    private static final String BLOB_ID_SUFFIX = " -- blob";
+//    private static final int BLOB_PERIOD_SCALE = 4;
+//    private static final int BLOB_ANIMATION_MIN = 50;
+//    private static final int BLOB_ANIMATION_MAX = 150;
+//    private static final String QUAKE_ID = "quake";
+//    private static final int QUAKE_ACTION_PERIOD = 1100;
+//    private static final int QUAKE_ANIMATION_PERIOD = 100;
 
     public Ore_Blob(
             String ID,
@@ -189,7 +189,7 @@ public class Ore_Blob implements Entity, Execute {
             ImageStore imageStore)
     {
         if (resourceCount >= RESOURCELIMIT) {
-            Miner_Full miner = (Miner_Full) Factory.createMinerFull(ID, RESOURCELIMIT,
+            Miner_Full miner = Factory.createMinerFull(ID, RESOURCELIMIT,
                     position, ACTIONPERIOD,
                     ANIMATIONPERIOD,
                     IMAGES);
@@ -232,7 +232,7 @@ public class Ore_Blob implements Entity, Execute {
             Point tgtPos = blobTarget.get().getPosition();
 
             if (moveToOreBlob(world, blobTarget.get(), scheduler)) {
-                Quake quake = (Quake) Factory.createQuake(tgtPos,
+                Quake quake = Factory.createQuake(tgtPos,
                         imageStore.getImageList(Functions.QUAKE_KEY));
 
                 world.addEntity(quake);
