@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Ore_Blob implements Entity, Execute, NextPosition, Move {
     private final String ID;
-    private static Point position;
+    private Point position;
     private final List<PImage> IMAGES ;
     private int imageIndex;
     private final int RESOURCELIMIT;
