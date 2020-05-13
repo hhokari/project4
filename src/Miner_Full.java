@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Miner_Full implements Entity, Execute {
     private final String ID;
-    private Point position;
+    private static Point position;
     private final List<PImage> IMAGES ;
     private int imageIndex;
     private final int RESOURCELIMIT;
@@ -47,32 +47,7 @@ public class Miner_Full implements Entity, Execute {
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 
-    private Point nextPositionOreBlob(
-            WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.X - position.X);
-        Point newPos = new Point(position.X + horiz, position.Y);
-
-        Optional<Entity> occupant = world.getOccupant(newPos);
-
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
-                == Ore.class)))
-        {
-            int vert = Integer.signum(destPos.Y - position.Y);
-            newPos = new Point(position.X, position.Y + vert);
-            occupant = world.getOccupant(newPos);
-
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
-                    == Ore.class)))
-            {
-                newPos = position;
-            }
-        }
-
-        return newPos;
-    }
-
-    private Point nextPositionMiner(
+    public static Point nextPosition(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.X - position.X);
@@ -101,7 +76,7 @@ public class Miner_Full implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionOreBlob(world, target.getPosition());
+            Point nextPos = Ore_Blob.nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -124,7 +99,7 @@ public class Miner_Full implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.getPosition());
+            Point nextPos = Miner_Not_Full.nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -151,7 +126,7 @@ public class Miner_Full implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.getPosition());
+            Point nextPos = nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);

@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Ore_Blob implements Entity, Execute {
     private final String ID;
-    private Point position;
+    private static Point position;
     private final List<PImage> IMAGES ;
     private int imageIndex;
     private final int RESOURCELIMIT;
@@ -48,7 +48,7 @@ public class Ore_Blob implements Entity, Execute {
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 
-    private Point nextPositionOreBlob(
+    public static Point nextPosition(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.X - position.X);
@@ -73,23 +73,23 @@ public class Ore_Blob implements Entity, Execute {
         return newPos;
     }
 
-    private Point nextPositionMiner(
-            WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.X - position.X);
-        Point newPos = new Point(position.X + horiz, position.Y);
-
-        if (horiz == 0 || world.isOccupied(newPos)) {
-            int vert = Integer.signum(destPos.Y - position.Y);
-            newPos = new Point(position.X, position.Y + vert);
-
-            if (vert == 0 || world.isOccupied(newPos)) {
-                newPos = position;
-            }
-        }
-
-        return newPos;
-    }
+//    private Point nextPositionMiner(
+//            WorldModel world, Point destPos)
+//    {
+//        int horiz = Integer.signum(destPos.X - position.X);
+//        Point newPos = new Point(position.X + horiz, position.Y);
+//
+//        if (horiz == 0 || world.isOccupied(newPos)) {
+//            int vert = Integer.signum(destPos.Y - position.Y);
+//            newPos = new Point(position.X, position.Y + vert);
+//
+//            if (vert == 0 || world.isOccupied(newPos)) {
+//                newPos = position;
+//            }
+//        }
+//
+//        return newPos;
+//    }
 
     private boolean moveToOreBlob(
             WorldModel world,
@@ -102,7 +102,7 @@ public class Ore_Blob implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionOreBlob(world, target.getPosition());
+            Point nextPos = nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -125,7 +125,7 @@ public class Ore_Blob implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.getPosition());
+            Point nextPos = Miner_Not_Full.nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -152,7 +152,7 @@ public class Ore_Blob implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.getPosition());
+            Point nextPos = nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);

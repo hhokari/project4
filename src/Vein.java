@@ -48,48 +48,48 @@ public class Vein implements Entity, Execute {
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 
-    private Point nextPositionOreBlob(
-            WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.X - position.X);
-        Point newPos = new Point(position.X + horiz, position.Y);
-
-        Optional<Entity> occupant = world.getOccupant(newPos);
-
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
-                == Ore.class)))
-        {
-            int vert = Integer.signum(destPos.Y - position.Y);
-            newPos = new Point(position.X, position.Y + vert);
-            occupant = world.getOccupant(newPos);
-
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
-                    == Ore.class)))
-            {
-                newPos = position;
-            }
-        }
-
-        return newPos;
-    }
-
-    private Point nextPositionMiner(
-            WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.X - position.X);
-        Point newPos = new Point(position.X + horiz, position.Y);
-
-        if (horiz == 0 || world.isOccupied(newPos)) {
-            int vert = Integer.signum(destPos.Y - position.Y);
-            newPos = new Point(position.X, position.Y + vert);
-
-            if (vert == 0 || world.isOccupied(newPos)) {
-                newPos = position;
-            }
-        }
-
-        return newPos;
-    }
+//    private Point nextPositionOreBlob(
+//            WorldModel world, Point destPos)
+//    {
+//        int horiz = Integer.signum(destPos.X - position.X);
+//        Point newPos = new Point(position.X + horiz, position.Y);
+//
+//        Optional<Entity> occupant = world.getOccupant(newPos);
+//
+//        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
+//                == Ore.class)))
+//        {
+//            int vert = Integer.signum(destPos.Y - position.Y);
+//            newPos = new Point(position.X, position.Y + vert);
+//            occupant = world.getOccupant(newPos);
+//
+//            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
+//                    == Ore.class)))
+//            {
+//                newPos = position;
+//            }
+//        }
+//
+//        return newPos;
+//    }
+//
+//    private Point nextPositionMiner(
+//            WorldModel world, Point destPos)
+//    {
+//        int horiz = Integer.signum(destPos.X - position.X);
+//        Point newPos = new Point(position.X + horiz, position.Y);
+//
+//        if (horiz == 0 || world.isOccupied(newPos)) {
+//            int vert = Integer.signum(destPos.Y - position.Y);
+//            newPos = new Point(position.X, position.Y + vert);
+//
+//            if (vert == 0 || world.isOccupied(newPos)) {
+//                newPos = position;
+//            }
+//        }
+//
+//        return newPos;
+//    }
 
     private boolean moveToOreBlob(
             WorldModel world,
@@ -102,7 +102,7 @@ public class Vein implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionOreBlob(world, target.getPosition());
+            Point nextPos = Ore_Blob.nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -125,7 +125,7 @@ public class Vein implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.getPosition());
+            Point nextPos = Miner_Not_Full.nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -152,7 +152,7 @@ public class Vein implements Entity, Execute {
             return true;
         }
         else {
-            Point nextPos = nextPositionMiner(world, target.getPosition());
+            Point nextPos = Miner_Full.nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
