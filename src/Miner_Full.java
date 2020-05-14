@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class Miner_Full implements Entity, Execute, NextPosition, Move {
+public class Miner_Full implements Entity, Animate, Execute, NextPosition, Move {
     private final String ID;
     private Point position;
     private final List<PImage> IMAGES ;

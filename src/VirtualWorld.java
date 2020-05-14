@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import processing.core.*;
 
-public final class VirtualWorld extends PApplet implements ScheduleActions
+public final class VirtualWorld extends PApplet
 {
     private static final int TIMER_ACTION_PERIOD = 100;
 
@@ -144,8 +144,8 @@ public final class VirtualWorld extends PApplet implements ScheduleActions
             WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
         for (Entity entity : world.getentities()) {
-            if (entity instanceof ScheduleActions)
-                ((ScheduleActions) entity).scheduleActions(world, scheduler, imageStore);
+            if (entity instanceof Execute)
+                ((Execute) entity).scheduleActions(scheduler, world, imageStore);
         }
     }
 
