@@ -2,9 +2,8 @@ import processing.core.PImage;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
-public class Miner_Not_Full implements Entity, Animate, Execute, NextPosition, Move {
+public class Miner_Not_Full implements Entity, Animate, Execute, NextPosition {
     private final String ID;
     private Point position;
     private final List<PImage> IMAGES ;
@@ -13,20 +12,7 @@ public class Miner_Not_Full implements Entity, Animate, Execute, NextPosition, M
     private int resourceCount;
     private final int ACTIONPERIOD;
     private final int ANIMATIONPERIOD;
-//    private static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
-//    private static final String ORE_ID_PREFIX = "ore -- ";
-//    private static final int ORE_CORRUPT_MIN = 20000;
-//    private static final Random RAND = new Random();
-//    private static final int ORE_CORRUPT_MAX = 30000;
     public static final String ORE_KEY = "ore";
-//    private static final String BLOB_KEY = "blob";
-//    private static final String BLOB_ID_SUFFIX = " -- blob";
-//    private static final int BLOB_PERIOD_SCALE = 4;
-//    private static final int BLOB_ANIMATION_MIN = 50;
-//    private static final int BLOB_ANIMATION_MAX = 150;
-//    private static final String QUAKE_ID = "quake";
-//    private static final int QUAKE_ACTION_PERIOD = 1100;
-//    private static final int QUAKE_ANIMATION_PERIOD = 100;
 
     public Miner_Not_Full(
             String ID,
@@ -65,54 +51,6 @@ public class Miner_Not_Full implements Entity, Animate, Execute, NextPosition, M
         return newPos;
     }
 
-//    private boolean moveToOreBlob(
-//            WorldModel world,
-//            Entity target,
-//            EventScheduler scheduler)
-//    {
-//        if (Functions.adjacent(position, target.getPosition())) {
-//            world.removeEntity(target);
-//            scheduler.unscheduleAllEvents(target);
-//            return true;
-//        }
-//        else {
-//            Point nextPos = nextPosition(world, target.getPosition());
-//
-//            if (!position.equals(nextPos)) {
-//                Optional<Entity> occupant = world.getOccupant(nextPos);
-//                if (occupant.isPresent()) {
-//                    scheduler.unscheduleAllEvents(occupant.get());
-//                }
-//
-//                world.moveEntity(this, nextPos);
-//            }
-//            return false;
-//        }
-//    }
-
-//    private boolean moveToFull(
-//            WorldModel world,
-//            Entity target,
-//            EventScheduler scheduler)
-//    {
-//        if (Functions.adjacent(position, target.getPosition())) {
-//            return true;
-//        }
-//        else {
-//            Point nextPos = nextPosition(world, target.getPosition());
-//
-//            if (!position.equals(nextPos)) {
-//                Optional<Entity> occupant = world.getOccupant(nextPos);
-//                if (occupant.isPresent()) {
-//                    scheduler.unscheduleAllEvents(occupant.get());
-//                }
-//
-//                world.moveEntity(this, nextPos);
-//            }
-//            return false;
-//        }
-//    }
-
     public boolean move(
             WorldModel world,
             Entity target,
@@ -139,23 +77,6 @@ public class Miner_Not_Full implements Entity, Animate, Execute, NextPosition, M
             return false;
         }
     }
-
-//    private void transformFull(
-//            WorldModel world,
-//            EventScheduler scheduler,
-//            ImageStore imageStore)
-//    {
-//        Miner_Not_Full miner = (Miner_Not_Full) Factory.createMinerNotFull(ID, RESOURCELIMIT,
-//                position, ACTIONPERIOD,
-//                ANIMATIONPERIOD,
-//                IMAGES);
-//
-//        world.removeEntity(miner);
-//        scheduler.unscheduleAllEvents(this);
-//
-//        world.addEntity(miner);
-//        miner.scheduleActions(scheduler, world, imageStore);
-//    }
 
     private boolean transformNotFull(
             WorldModel world,
@@ -189,7 +110,7 @@ public class Miner_Not_Full implements Entity, Animate, Execute, NextPosition, M
                         Factory.createActivityAction(this, world, imageStore),
                         ACTIONPERIOD);
                 scheduler.scheduleEvent(this,
-                        Factory.createAnimationAction((Animate) this, 0),
+                        Factory.createAnimationAction(this, 0),
                         getAnimationPeriod());
     }
 

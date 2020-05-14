@@ -1,5 +1,3 @@
-import java.util.Optional;
-
 public final class Point
 {
     public final int X;
