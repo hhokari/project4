@@ -10,7 +10,6 @@ public class Quake implements Animate, Execute {
     private final int ACTIONPERIOD;
     private final int ANIMATIONPERIOD;
     private static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
-    public static final String ORE_KEY = "ore";
     public Quake(
             String ID,
             Point position,

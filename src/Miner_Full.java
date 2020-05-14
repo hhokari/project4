@@ -11,7 +11,6 @@ public class Miner_Full implements Entity, Animate, Execute, NextPosition {
     private final int RESOURCELIMIT;
     private final int ACTIONPERIOD;
     private final int ANIMATIONPERIOD;
-    public static final String ORE_KEY = "ore";
 
     public Miner_Full(
             String ID,

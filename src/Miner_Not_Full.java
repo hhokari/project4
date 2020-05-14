@@ -12,7 +12,6 @@ public class Miner_Not_Full implements Entity, Animate, Execute, NextPosition {
     private int resourceCount;
     private final int ACTIONPERIOD;
     private final int ANIMATIONPERIOD;
-    public static final String ORE_KEY = "ore";
 
     public Miner_Not_Full(
             String ID,

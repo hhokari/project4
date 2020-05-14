@@ -155,7 +155,7 @@ public final class Functions
         }
     }
 
-    public static boolean processLine(
+    private static boolean processLine(
             String line, WorldModel world, ImageStore imageStore)
     {
         String[] properties = line.split("\\s");

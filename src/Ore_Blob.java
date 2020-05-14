@@ -11,7 +11,6 @@ public class Ore_Blob implements Entity, Animate, Execute, NextPosition{
     private int imageIndex;
     private final int ACTIONPERIOD;
     private final int ANIMATIONPERIOD;
-    public static final String ORE_KEY = "ore";
 
     public Ore_Blob(
             String ID,

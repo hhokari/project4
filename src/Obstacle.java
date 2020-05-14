@@ -7,7 +7,6 @@ public class Obstacle implements Entity {
     private Point position;
     private final List<PImage> IMAGES ;
     private int imageIndex;
-    public static final String ORE_KEY = "ore";
     public Obstacle(
             String ID,
             Point position,
