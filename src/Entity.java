@@ -4,6 +4,6 @@ public interface Entity
 {
     Point getPosition();
     void setPosition(Point position);
-    void nextImage();
+//    void nextImage();
     PImage getCurrentImage();
 }

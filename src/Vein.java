@@ -61,11 +61,6 @@ public class Vein implements Entity, Execute {
                 ACTIONPERIOD);
     }
 
-
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % IMAGES.size();
-    }
-
     public PImage getCurrentImage() {
         return (IMAGES.get(imageIndex));
     }

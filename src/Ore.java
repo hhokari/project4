@@ -64,10 +64,6 @@ public class Ore implements Entity, Execute {
         blob.scheduleActions(scheduler, world, imageStore);
     }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % IMAGES.size();
-    }
-
     public PImage getCurrentImage() {
         return (IMAGES.get(imageIndex));
     }
