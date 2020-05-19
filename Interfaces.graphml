@@ -346,13 +346,14 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="85.35230937582924" width="166.45513663390147" x="2118.9601305025617" y="1363.3546143005085"/>
+          <y:Geometry height="98.06931239349319" width="166.45513663390147" x="2118.9601305025617" y="1363.3546143005083"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="4.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="55.2890625" x="55.58303706695074" xml:space="preserve" y="26.701171875">Animate<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="interface" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve"/>
-            <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int</y:MethodLabel>
+            <y:MethodLabel xml:space="preserve">+nextImage()
++getAnimationPeriod(): int</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -369,7 +370,6 @@
             <y:AttributeLabel xml:space="preserve"/>
             <y:MethodLabel xml:space="preserve">+getPosition(): Point
 +setPosition(position: Point)
-+nextImage()
 +getCurrentImage(): PImage
 </y:MethodLabel>
           </y:UML>
@@ -454,8 +454,7 @@
 -position: Point
 -IMAGES: List&lt;PImage&gt;
 -imageIndex: int</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+nextImage()
-+getCurrentImage(): PImage
+            <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage
 +getPosition(): Point
 +setPosition(position: Point)</y:MethodLabel>
           </y:UML>
@@ -562,8 +561,7 @@
 -position: Point
 -IMAGES: List&lt;PImage&gt;
 -imageIndex: int</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+nextImage()
-+getCurrentImage(): PImage
+            <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage
 +getPosition(): Point
 +setPosition(position: Point)                                                                          </y:MethodLabel>
           </y:UML>
@@ -593,7 +591,6 @@
 -BLOB_ANIMATION_MAX: int  &lt;&lt;static&gt;&gt;</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve"> +scheduleActions(scheduler: EventScheduler, world: WorldModel, imageStore ImageStore)
 +executeActivity(world: WorldModel, imageStore: ImageStore, scheduler: EventScheduler)
-+nextImage()
 +getAnimationPeriod(): int
 +getCurrentImage(): PImage
 +getPosition(): Point
@@ -678,7 +675,6 @@
 -ORE_KEY: String                                            &lt;&lt;static&gt;&gt;</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+scheduleActions(scheduler: EventScheduler, world: WorldModel, imageStore: ImageStore)
 +executeActivity(world: WorldModel, imageStore: ImageStore, scheduler: EventScheduler)
-+nextImage()
 +getAnimationPeriod(): int
 +getCurrentImage(): PImage
 +getPosition(): Point
@@ -973,7 +969,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e26" source="n26" target="n12">
+    <edge id="e26" source="n21" target="n15">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -984,7 +980,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e27" source="n21" target="n15">
+    <edge id="e27" source="n20" target="n15">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -995,7 +991,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e28" source="n20" target="n15">
+    <edge id="e28" source="n24" target="n15">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1006,7 +1002,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e29" source="n24" target="n15">
+    <edge id="e29" source="n16" target="n11">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1017,18 +1013,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e30" source="n16" target="n11">
-      <data key="d8" xml:space="preserve"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
-          <y:Arrows source="none" target="white_delta"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e31" source="n12" target="n13">
+    <edge id="e30" source="n12" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1039,7 +1024,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e32" source="n14" target="n13">
+    <edge id="e31" source="n14" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1050,7 +1035,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e33" source="n15" target="n13">
+    <edge id="e32" source="n15" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1061,7 +1046,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e34" source="n17" target="n11">
+    <edge id="e33" source="n17" target="n11">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1072,7 +1057,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e35" source="n13" target="n5">
+    <edge id="e34" source="n13" target="n5">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1083,7 +1068,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e36" source="n1" target="n13">
+    <edge id="e35" source="n1" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1094,7 +1079,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e37" source="n7" target="n13">
+    <edge id="e36" source="n7" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -1105,14 +1090,25 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e38" source="n1" target="n11">
+    <edge id="e37" source="n1" target="n11">
       <data key="d8" xml:space="preserve"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="white_diamond" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e38" source="n25" target="n12">
+      <data key="d8" xml:space="preserve"/>
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
+          <y:Arrows source="none" target="white_delta"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
