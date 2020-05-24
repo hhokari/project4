@@ -3,10 +3,11 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
+
 public class Miner_Full extends AnimatedEntity implements Entity, Animate, Execute, NextPosition {
 //    private final String ID;
-    private Point position;
-//    private final List<PImage> IMAGES ;
+//    private Point position;
+//    private final List<PImage> IMAGES;
     private int imageIndex;
     private final int RESOURCELIMIT;
 //    private final int ACTIONPERIOD;
@@ -25,7 +26,7 @@ public class Miner_Full extends AnimatedEntity implements Entity, Animate, Execu
         this.RESOURCELIMIT = RESOURCELIMIT;
     }
 
-    public Point nextPosition(
+    protected Point nextPosition(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.X - position.X);

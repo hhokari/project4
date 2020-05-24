@@ -3,12 +3,12 @@ import processing.core.PImage;
 import java.util.List;
 
 public abstract class AnimatedEntity implements Animate {
-    private final String ID;
-    private Point position;
-    private final List<PImage> IMAGES;
+    protected final String ID;
+    protected Point position;
+    protected final List<PImage> IMAGES;
     private int imageIndex;
-    private final int ACTIONPERIOD;
-    private final int ANIMATIONPERIOD;
+    protected final int ACTIONPERIOD;
+    protected final int ANIMATIONPERIOD;
 
 
     public AnimatedEntity(
@@ -25,6 +25,8 @@ public abstract class AnimatedEntity implements Animate {
         this.ACTIONPERIOD = ACTIONPERIOD;
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
+
+    protected abstract Point nextPosition(WorldModel world, Point destPos);
 
     public int getAnimationPeriod() {
         return ANIMATIONPERIOD;

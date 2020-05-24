@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class Ore_Blob implements Entity, Animate, Execute, NextPosition{
-    private final String ID;
-    private Point position;
-    private final List<PImage> IMAGES ;
+public class Ore_Blob extends AnimatedEntity implements Entity, Animate, Execute, NextPosition{
+//    private final String ID;
+//    private Point position;
+//    private final List<PImage> IMAGES ;
     private int imageIndex;
-    private final int ACTIONPERIOD;
-    private final int ANIMATIONPERIOD;
+//    private final int ACTIONPERIOD;
+//    private final int ANIMATIONPERIOD;
 
     public Ore_Blob(
             String ID,
@@ -19,12 +19,13 @@ public class Ore_Blob implements Entity, Animate, Execute, NextPosition{
             int ACTIONPERIOD,
             int ANIMATIONPERIOD)
     {
-        this.ID = ID;
-        this.position = position;
-        this.IMAGES = IMAGES;
+        super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
+//        this.ID = ID;
+//        this.position = position;
+//        this.IMAGES = IMAGES;
         this.imageIndex = 0;
-        this.ACTIONPERIOD = ACTIONPERIOD;
-        this.ANIMATIONPERIOD = ANIMATIONPERIOD;
+//        this.ACTIONPERIOD = ACTIONPERIOD;
+//        this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 
     public Point nextPosition(
@@ -117,26 +118,26 @@ public class Ore_Blob implements Entity, Animate, Execute, NextPosition{
                 nextPeriod);
     }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % IMAGES.size();
-    }
-
-    public int getAnimationPeriod() {
-        return ANIMATIONPERIOD;
-    }
-
-    public PImage getCurrentImage() {
-        return (IMAGES.get(imageIndex));
-    }
-
-
-    public Point getPosition()
-    {
-        return position;
-    }
-
-    public void setPosition(Point position)
-    {
-        this.position = position;
-    }
+//    public void nextImage() {
+//        imageIndex = (imageIndex + 1) % IMAGES.size();
+//    }
+//
+//    public int getAnimationPeriod() {
+//        return ANIMATIONPERIOD;
+//    }
+//
+//    public PImage getCurrentImage() {
+//        return (IMAGES.get(imageIndex));
+//    }
+//
+//
+//    public Point getPosition()
+//    {
+//        return position;
+//    }
+//
+//    public void setPosition(Point position)
+//    {
+//        this.position = position;
+//    }
 }
