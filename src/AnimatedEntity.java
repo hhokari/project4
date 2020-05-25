@@ -28,6 +28,8 @@ public abstract class AnimatedEntity implements Animate {
 
     protected abstract Point nextPosition(WorldModel world, Point destPos);
 
+    protected abstract boolean move(WorldModel world, Entity target, EventScheduler scheduler);
+
     public int getAnimationPeriod() {
         return ANIMATIONPERIOD;
     }

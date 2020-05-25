@@ -28,7 +28,7 @@ public class Ore_Blob extends AnimatedEntity implements Entity, Animate, Execute
 //        this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 
-    public Point nextPosition(
+    protected Point nextPosition(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.X - position.X);

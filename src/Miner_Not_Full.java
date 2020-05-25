@@ -33,7 +33,7 @@ public class Miner_Not_Full extends AnimatedEntity implements Entity, Animate, E
 //        this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 
-    public Point nextPosition(
+    protected Point nextPosition(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.X - position.X);
