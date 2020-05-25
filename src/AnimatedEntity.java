@@ -2,12 +2,8 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public abstract class AnimatedEntity implements Animate {
-    protected final String ID;
-    protected Point position;
-    protected final List<PImage> IMAGES;
-    private int imageIndex;
-    protected final int ACTIONPERIOD;
+public abstract class AnimatedEntity extends ActiveEntity {
+
     protected final int ANIMATIONPERIOD;
 
 
@@ -15,20 +11,13 @@ public abstract class AnimatedEntity implements Animate {
             final String ID,
             Point position,
             final List<PImage> IMAGES,
+            int imageIndex,
             final int ACTIONPERIOD,
             final int ANIMATIONPERIOD)
     {
-        this.ID = ID;
-        this.position = position;
-        this.IMAGES = IMAGES;
-        this.imageIndex = 0;
-        this.ACTIONPERIOD = ACTIONPERIOD;
+        super(ID, position, IMAGES, imageIndex, ACTIONPERIOD);
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
-
-    protected abstract Point nextPosition(WorldModel world, Point destPos);
-
-    protected abstract boolean move(WorldModel world, Entity target, EventScheduler scheduler);
 
     public int getAnimationPeriod() {
         return ANIMATIONPERIOD;
@@ -36,19 +25,5 @@ public abstract class AnimatedEntity implements Animate {
 
     public void nextImage() {
         imageIndex = (imageIndex + 1) % IMAGES.size();
-    }
-
-    public Point getPosition()
-    {
-        return position;
-    }
-
-    public void setPosition(Point position)
-    {
-        this.position = position;
-    }
-
-    public PImage getCurrentImage() {
-        return (IMAGES.get(imageIndex));
     }
 }

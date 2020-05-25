@@ -5,12 +5,12 @@ import java.util.Optional;
 import java.util.Random;
 
 
-public class Vein implements Entity, Execute {
-    private final String ID;
-    private Point position;
-    private final List<PImage> IMAGES ;
-    private int imageIndex;
-    private final int ACTIONPERIOD;
+public class Vein extends ActiveEntity {
+//    private final String ID;
+//    private Point position;
+//    private final List<PImage> IMAGES ;
+//    private int imageIndex;
+//    private final int ACTIONPERIOD;
     private static final String ORE_ID_PREFIX = "ore -- ";
     private static final int ORE_CORRUPT_MIN = 20000;
     private static final Random RAND = new Random();
@@ -18,19 +18,16 @@ public class Vein implements Entity, Execute {
     public static final String ORE_KEY = "ore";
 
     public Vein(
-            String ID,
+            final String ID,
             Point position,
-            List<PImage> IMAGES,
-            int ACTIONPERIOD)
+            final List<PImage> IMAGES,
+            int imageIndex,
+            final int ACTIONPERIOD)
     {
-        this.ID = ID;
-        this.position = position;
-        this.IMAGES = IMAGES;
-        this.imageIndex = 0;
-        this.ACTIONPERIOD = ACTIONPERIOD;
+        super(ID, position, IMAGES, imageIndex, ACTIONPERIOD);
     }
 
-    public void scheduleActions(
+    protected void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
@@ -40,7 +37,7 @@ public class Vein implements Entity, Execute {
                         ACTIONPERIOD);
     }
 
-    public void executeActivity(
+    protected void executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -61,18 +58,18 @@ public class Vein implements Entity, Execute {
                 ACTIONPERIOD);
     }
 
-    public PImage getCurrentImage() {
-        return (IMAGES.get(imageIndex));
-    }
-
-
-    public Point getPosition()
-    {
-        return position;
-    }
-
-    public void setPosition(Point position)
-    {
-        this.position = position;
-    }
+//    public PImage getCurrentImage() {
+//        return (IMAGES.get(imageIndex));
+//    }
+//
+//
+//    public Point getPosition()
+//    {
+//        return position;
+//    }
+//
+//    public void setPosition(Point position)
+//    {
+//        this.position = position;
+//    }
 }

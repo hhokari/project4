@@ -2,30 +2,27 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class Quake implements Animate, Execute {
-    private final String ID;
-    private Point position;
-    private final List<PImage> IMAGES ;
-    private int imageIndex;
-    private final int ACTIONPERIOD;
-    private final int ANIMATIONPERIOD;
+public class Quake extends AnimatedEntity {
+//    private final String ID;
+//    private Point position;
+//    private final List<PImage> IMAGES ;
+//    private int imageIndex;
+//    private final int ACTIONPERIOD;
+//    private final int ANIMATIONPERIOD;
     private static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
+
     public Quake(
-            String ID,
+            final String ID,
             Point position,
-            List<PImage> IMAGES,
-            int ACTIONPERIOD,
-            int ANIMATIONPERIOD)
+            final List<PImage> IMAGES,
+            int imageIndex,
+            final int ACTIONPERIOD,
+            final int ANIMATIONPERIOD)
     {
-        this.ID = ID;
-        this.position = position;
-        this.IMAGES = IMAGES;
-        this.imageIndex = 0;
-        this.ACTIONPERIOD = ACTIONPERIOD;
-        this.ANIMATIONPERIOD = ANIMATIONPERIOD;
+        super(ID, position, IMAGES, imageIndex, ACTIONPERIOD, ANIMATIONPERIOD);
     }
 
-    public void scheduleActions(
+    protected void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
@@ -38,7 +35,7 @@ public class Quake implements Animate, Execute {
                         getAnimationPeriod());
     }
 
-    public void executeActivity(
+    protected void executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -47,25 +44,25 @@ public class Quake implements Animate, Execute {
         world.removeEntity(this);
     }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % IMAGES.size();
-    }
-
-    public int getAnimationPeriod() {
-        return ANIMATIONPERIOD;
-    }
-
-    public PImage getCurrentImage() {
-        return (IMAGES.get(imageIndex));
-    }
-
-    public Point getPosition()
-    {
-        return position;
-    }
-
-    public void setPosition(Point position)
-    {
-        this.position = position;
-    }
+//    public void nextImage() {
+//        imageIndex = (imageIndex + 1) % IMAGES.size();
+//    }
+//
+//    public int getAnimationPeriod() {
+//        return ANIMATIONPERIOD;
+//    }
+//
+//    public PImage getCurrentImage() {
+//        return (IMAGES.get(imageIndex));
+//    }
+//
+//    public Point getPosition()
+//    {
+//        return position;
+//    }
+//
+//    public void setPosition(Point position)
+//    {
+//        this.position = position;
+//    }
 }

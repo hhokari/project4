@@ -3,11 +3,11 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Miner_Not_Full extends AnimatedEntity implements Entity, Animate, Execute, NextPosition {
+public class Miner_Not_Full extends MoveEntity {
 //    private final String ID;
 //    private Point position;
 //    private final List<PImage> IMAGES ;
-    private int imageIndex;
+//    private int imageIndex;
     private final int RESOURCELIMIT;
     private int resourceCount;
 //    private final int ACTIONPERIOD;
@@ -17,16 +17,17 @@ public class Miner_Not_Full extends AnimatedEntity implements Entity, Animate, E
             String ID,
             Point position,
             List<PImage> IMAGES,
+            int imageIndex,
             int RESOURCELIMIT,
             int resourceCount,
             int ACTIONPERIOD,
             int ANIMATIONPERIOD)
     {
-        super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
+        super(ID, position, IMAGES, imageIndex, ACTIONPERIOD, ANIMATIONPERIOD);
 //        this.ID = ID;
 //        this.position = position;
 //        this.IMAGES = IMAGES;
-        this.imageIndex = 0;
+//        this.imageIndex = 0;
         this.RESOURCELIMIT = RESOURCELIMIT;
         this.resourceCount = resourceCount;
 //        this.ACTIONPERIOD = ACTIONPERIOD;
@@ -51,7 +52,7 @@ public class Miner_Not_Full extends AnimatedEntity implements Entity, Animate, E
         return newPos;
     }
 
-    public boolean move(
+    protected boolean move(
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
@@ -78,7 +79,7 @@ public class Miner_Not_Full extends AnimatedEntity implements Entity, Animate, E
         }
     }
 
-    private boolean transformNotFull(
+    protected boolean transformNotFull(
             WorldModel world,
             EventScheduler scheduler,
             ImageStore imageStore)
@@ -101,7 +102,7 @@ public class Miner_Not_Full extends AnimatedEntity implements Entity, Animate, E
         return false;
     }
 
-    public void scheduleActions(
+    protected void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
@@ -114,7 +115,7 @@ public class Miner_Not_Full extends AnimatedEntity implements Entity, Animate, E
                         getAnimationPeriod());
     }
 
-    public void executeActivity(
+    protected void executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)

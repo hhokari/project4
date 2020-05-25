@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Ore implements Entity, Execute {
-    private final String ID;
-    private Point position;
-    private final List<PImage> IMAGES ;
-    private int imageIndex;
-    private final int ACTIONPERIOD;
+public class Ore extends ActiveEntity {
+//    private final String ID;
+//    private Point position;
+//    private final List<PImage> IMAGES ;
+//    private int imageIndex;
+//    private final int ACTIONPERIOD;
     private static final Random RAND = new Random();
     public static final String ORE_KEY = "ore";
     private static final String BLOB_KEY = "blob";
@@ -19,21 +19,18 @@ public class Ore implements Entity, Execute {
     private static final int BLOB_ANIMATION_MAX = 150;
 
     public Ore(
-            String ID,
+            final String ID,
             Point position,
-            List<PImage> IMAGES,
-            int ACTIONPERIOD)
+            final List<PImage> IMAGES,
+            int imageIndex,
+            final int ACTIONPERIOD)
     {
-        this.ID = ID;
-        this.position = position;
-        this.IMAGES = IMAGES;
-        this.imageIndex = 0;
-        this.ACTIONPERIOD = ACTIONPERIOD;
+        super(ID, position, IMAGES, imageIndex, ACTIONPERIOD);
     }
 
 
 
-    public void scheduleActions(
+    protected void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
@@ -43,7 +40,7 @@ public class Ore implements Entity, Execute {
                         ACTIONPERIOD);
     }
 
-    public void executeActivity(
+    protected void executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -64,17 +61,17 @@ public class Ore implements Entity, Execute {
         blob.scheduleActions(scheduler, world, imageStore);
     }
 
-    public PImage getCurrentImage() {
-        return (IMAGES.get(imageIndex));
-    }
-
-    public Point getPosition()
-    {
-        return position;
-    }
-
-    public void setPosition(Point position)
-    {
-        this.position = position;
-    }
+//    public PImage getCurrentImage() {
+//        return (IMAGES.get(imageIndex));
+//    }
+//
+//    public Point getPosition()
+//    {
+//        return position;
+//    }
+//
+//    public void setPosition(Point position)
+//    {
+//        this.position = position;
+//    }
 }
