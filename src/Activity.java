@@ -1,10 +1,10 @@
-public class Activity implements Action {
-    private final Execute ENTITY;
+public class Activity extends Action {
+    private final ActiveEntity ENTITY;
     private final WorldModel WORLD;
     private final ImageStore IMAGESTORE;
 
     public Activity(
-            Execute ENTITY,
+            ActiveEntity ENTITY,
             WorldModel WORLD,
             ImageStore IMAGESTORE)
     {
@@ -13,7 +13,7 @@ public class Activity implements Action {
         this.IMAGESTORE = IMAGESTORE;
     }
 
-    public void executeAction(
+    protected void executeAction(
             EventScheduler scheduler)
     {
                 ENTITY.executeActivity(WORLD,

@@ -17,8 +17,7 @@ public abstract class Entity {
     public Entity(
             final String ID,
             Point position,
-            final List<PImage> IMAGES,
-            int imageIndex)
+            final List<PImage> IMAGES)
     {
         this.ID = ID;
         this.position = position;

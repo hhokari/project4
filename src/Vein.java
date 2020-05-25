@@ -21,10 +21,10 @@ public class Vein extends ActiveEntity {
             final String ID,
             Point position,
             final List<PImage> IMAGES,
-            int imageIndex,
             final int ACTIONPERIOD)
     {
-        super(ID, position, IMAGES, imageIndex, ACTIONPERIOD);
+        super(ID, position, IMAGES, ACTIONPERIOD);
+        this.imageIndex = 0;
     }
 
     protected void scheduleActions(

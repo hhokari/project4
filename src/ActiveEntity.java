@@ -9,13 +9,13 @@ public abstract class ActiveEntity extends Entity {
             final String ID,
             Point position,
             final List<PImage> IMAGES,
-            int imageIndex,
             final int ACTIONPERIOD
     )
 
     {
-        super(ID, position, IMAGES, imageIndex);
+        super(ID, position, IMAGES);
         this.ACTIONPERIOD = ACTIONPERIOD;
+        this.imageIndex = 0;
     }
 
     protected abstract void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler);

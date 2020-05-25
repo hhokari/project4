@@ -17,13 +17,12 @@ public class Miner_Full extends MoveEntity {
             final String ID,
             final Point position,
             final List<PImage> IMAGES,
-            int imageIndex,
             final int RESOURCELIMIT,
             final int ACTIONPERIOD,
             final int ANIMATIONPERIOD)
     {
-        super(ID, position, IMAGES, imageIndex, ACTIONPERIOD, ANIMATIONPERIOD);
-//        this.imageIndex = 0;
+        super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
+        this.imageIndex = 0;
         this.RESOURCELIMIT = RESOURCELIMIT;
     }
 

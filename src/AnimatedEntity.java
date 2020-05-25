@@ -6,16 +6,15 @@ public abstract class AnimatedEntity extends ActiveEntity {
 
     protected final int ANIMATIONPERIOD;
 
-
     public AnimatedEntity(
             final String ID,
             Point position,
             final List<PImage> IMAGES,
-            int imageIndex,
             final int ACTIONPERIOD,
             final int ANIMATIONPERIOD)
     {
-        super(ID, position, IMAGES, imageIndex, ACTIONPERIOD);
+        super(ID, position, IMAGES, ACTIONPERIOD);
+        this.imageIndex = 0;
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 

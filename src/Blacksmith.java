@@ -11,10 +11,10 @@ public class Blacksmith extends Entity {
     public Blacksmith(
             final String ID,
             Point position,
-            final List<PImage> IMAGES,
-            int imageIndex)
+            final List<PImage> IMAGES)
     {
-        super(ID, position, IMAGES, imageIndex);
+        super(ID, position, IMAGES);
+        this.imageIndex = 0;
     }
 
 //
