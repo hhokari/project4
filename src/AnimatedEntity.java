@@ -5,6 +5,7 @@ import java.util.List;
 public abstract class AnimatedEntity extends ActiveEntity {
 
     protected final int ANIMATIONPERIOD;
+    protected int imageIndex;
 
     public AnimatedEntity(
             final String ID,
@@ -15,6 +16,7 @@ public abstract class AnimatedEntity extends ActiveEntity {
     {
         super(ID, position, IMAGES, ACTIONPERIOD);
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
+        this.imageIndex = 0;
     }
 
     public int getAnimationPeriod() {

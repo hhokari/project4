@@ -53,29 +53,34 @@ public class Ore_Blob extends MoveEntity {
         return newPos;
     }
 
-    protected boolean move(
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
-        if (Functions.adjacent(position, target.getPosition())) {
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents(target);
-            return true;
-        }
-        else {
-            Point nextPos = nextPosition(world, target.getPosition());
+//    public boolean move(
+//            WorldModel world,
+//            Entity target,
+//            EventScheduler scheduler)
+//    {
+//        if (Functions.adjacent(position, target.getPosition())) {
+//            world.removeEntity(target);
+//            scheduler.unscheduleAllEvents(target);
+//            return true;
+//        }
+//        else {
+//            Point nextPos = nextPosition(world, target.getPosition());
+//
+//            if (!position.equals(nextPos)) {
+//                Optional<Entity> occupant = world.getOccupant(nextPos);
+//                if (occupant.isPresent()) {
+//                    scheduler.unscheduleAllEvents(occupant.get());
+//                }
+//
+//                world.moveEntity(this, nextPos);
+//            }
+//            return false;
+//        }
+//    }
 
-            if (!position.equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(this, nextPos);
-            }
-            return false;
-        }
+    protected void moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+        world.removeEntity(target);
+        scheduler.unscheduleAllEvents(target);
     }
 
 //    protected void scheduleActions(

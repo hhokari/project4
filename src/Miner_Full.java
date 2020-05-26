@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class Miner_Full extends MoveEntity {
+public class Miner_Full extends Miner {
 //    private final String ID;
 //    private Point position;
 //    private final List<PImage> IMAGES;
 //    private int imageIndex;
-    private final int RESOURCELIMIT;
+//    private final int RESOURCELIMIT;
 //    private final int ACTIONPERIOD;
 //    private final int ANIMATIONPERIOD;
 
@@ -21,8 +21,7 @@ public class Miner_Full extends MoveEntity {
             final int ACTIONPERIOD,
             final int ANIMATIONPERIOD)
     {
-        super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
-        this.RESOURCELIMIT = RESOURCELIMIT;
+        super(ID, position, IMAGES, RESOURCELIMIT, ACTIONPERIOD, ANIMATIONPERIOD);
     }
 
     protected Point nextPosition(
@@ -43,28 +42,32 @@ public class Miner_Full extends MoveEntity {
         return newPos;
     }
 
-    protected boolean move(
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
-        if (Functions.adjacent(position, target.getPosition())) {
-            return true;
-        }
-        else {
-            Point nextPos = nextPosition(world, target.getPosition());
+//    public boolean move(
+//            WorldModel world,
+//            Entity target,
+//            EventScheduler scheduler)
+//    {
+//        if (Functions.adjacent(position, target.getPosition())) {
+//            return true;
+//        }
+//        else {
+//            Point nextPos = nextPosition(world, target.getPosition());
+//
+//            if (!position.equals(nextPos)) {
+//                Optional<Entity> occupant = world.getOccupant(nextPos);
+//                if (occupant.isPresent()) {
+//                    scheduler.unscheduleAllEvents(occupant.get());
+//                }
+//
+//                world.moveEntity(this, nextPos);
+//            }
+//            return false;
+//        }
+//    }
 
-            if (!position.equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(this, nextPos);
-            }
-            return false;
-        }
+    protected void moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
     }
+
 
     protected void transformFull(
             WorldModel world,
