@@ -19,4 +19,15 @@ public abstract class MoveEntity extends AnimatedEntity {
     protected abstract Point nextPosition(WorldModel world, Point destPos);
 
     protected abstract boolean move(WorldModel world, Entity target, EventScheduler scheduler);
+
+    public void scheduleActions(
+            EventScheduler scheduler,
+            WorldModel world,
+            ImageStore imageStore)
+    {
+        super.scheduleActions(scheduler, world, imageStore);
+        scheduler.scheduleEvent(this,
+                Factory.createAnimationAction(this, 0),
+                getAnimationPeriod());
+    }
 }

@@ -22,7 +22,7 @@ public class Quake extends AnimatedEntity {
         this.imageIndex = 0;
     }
 
-    protected void scheduleActions(
+    public void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)

@@ -27,15 +27,15 @@ public class Vein extends ActiveEntity {
         this.imageIndex = 0;
     }
 
-    protected void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-                scheduler.scheduleEvent(this,
-                        Factory.createActivityAction(this, world, imageStore),
-                        ACTIONPERIOD);
-    }
+//    protected void scheduleActions(
+//            EventScheduler scheduler,
+//            WorldModel world,
+//            ImageStore imageStore)
+//    {
+//                scheduler.scheduleEvent(this,
+//                        Factory.createActivityAction(this, world, imageStore),
+//                        ACTIONPERIOD);
+//    }
 
     protected void executeActivity(
             WorldModel world,

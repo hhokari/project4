@@ -79,18 +79,18 @@ public class Ore_Blob extends MoveEntity {
         }
     }
 
-    protected void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-                scheduler.scheduleEvent(this,
-                        Factory.createActivityAction(this, world, imageStore),
-                        ACTIONPERIOD);
-                scheduler.scheduleEvent(this,
-                        Factory.createAnimationAction(this, 0),
-                        getAnimationPeriod());
-    }
+//    protected void scheduleActions(
+//            EventScheduler scheduler,
+//            WorldModel world,
+//            ImageStore imageStore)
+//    {
+//                scheduler.scheduleEvent(this,
+//                        Factory.createActivityAction(this, world, imageStore),
+//                        ACTIONPERIOD);
+//                scheduler.scheduleEvent(this,
+//                        Factory.createAnimationAction(this, 0),
+//                        getAnimationPeriod());
+//    }
 
     protected void executeActivity(
             WorldModel world,
