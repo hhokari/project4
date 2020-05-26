@@ -15,7 +15,6 @@ public abstract class ActiveEntity extends Entity {
     {
         super(ID, position, IMAGES);
         this.ACTIONPERIOD = ACTIONPERIOD;
-        this.imageIndex = 0;
     }
 
     protected abstract void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler);

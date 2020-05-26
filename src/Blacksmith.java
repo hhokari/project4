@@ -14,7 +14,6 @@ public class Blacksmith extends Entity {
             final List<PImage> IMAGES)
     {
         super(ID, position, IMAGES);
-        this.imageIndex = 0;
     }
 
 //

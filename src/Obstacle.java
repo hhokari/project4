@@ -13,7 +13,6 @@ public class Obstacle extends Entity {
             final List<PImage> IMAGES)
     {
         super(ID, position, IMAGES);
-        this.imageIndex = 0;
     }
 
 //    public PImage getCurrentImage() {

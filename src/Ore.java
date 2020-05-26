@@ -25,7 +25,6 @@ public class Ore extends ActiveEntity {
             final int ACTIONPERIOD)
     {
         super(ID, position, IMAGES, ACTIONPERIOD);
-        this.imageIndex = 0;
     }
 
 

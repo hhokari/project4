@@ -20,7 +20,6 @@ public class Ore_Blob extends MoveEntity {
             final int ANIMATIONPERIOD)
     {
         super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
-        this.imageIndex = 0;
 //        this.ID = ID;
 //        this.position = position;
 //        this.IMAGES = IMAGES;

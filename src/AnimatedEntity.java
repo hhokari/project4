@@ -14,7 +14,6 @@ public abstract class AnimatedEntity extends ActiveEntity {
             final int ANIMATIONPERIOD)
     {
         super(ID, position, IMAGES, ACTIONPERIOD);
-        this.imageIndex = 0;
         this.ANIMATIONPERIOD = ANIMATIONPERIOD;
     }
 

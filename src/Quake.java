@@ -19,7 +19,6 @@ public class Quake extends AnimatedEntity {
             final int ANIMATIONPERIOD)
     {
         super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
-        this.imageIndex = 0;
     }
 
     public void scheduleActions(

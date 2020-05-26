@@ -13,7 +13,6 @@ public abstract class MoveEntity extends AnimatedEntity {
 
     {
         super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
-        this.imageIndex = 0;
     }
 
     protected abstract Point nextPosition(WorldModel world, Point destPos);

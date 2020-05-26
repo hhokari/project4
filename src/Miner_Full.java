@@ -22,7 +22,6 @@ public class Miner_Full extends MoveEntity {
             final int ANIMATIONPERIOD)
     {
         super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
-        this.imageIndex = 0;
         this.RESOURCELIMIT = RESOURCELIMIT;
     }
 
