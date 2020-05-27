@@ -19,6 +19,10 @@ public abstract class AnimatedEntity extends ActiveEntity {
         this.imageIndex = 0;
     }
 
+    public PImage getCurrentImage() {
+        return (IMAGES.get(imageIndex));
+    }
+
     public int getAnimationPeriod() {
         return ANIMATIONPERIOD;
     }
