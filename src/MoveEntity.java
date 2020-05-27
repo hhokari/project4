@@ -44,7 +44,6 @@ public abstract class MoveEntity extends AnimatedEntity {
 
     protected abstract void moveHelper(WorldModel world, Entity target, EventScheduler scheduler);
 
-
     public void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
