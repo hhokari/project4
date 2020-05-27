@@ -5,11 +5,7 @@ import java.util.Random;
 
 
 public class Ore extends ActiveEntity {
-//    private final String ID;
-//    private Point position;
-//    private final List<PImage> IMAGES ;
-//    private int imageIndex;
-//    private final int ACTIONPERIOD;
+
     private static final Random RAND = new Random();
     public static final String ORE_KEY = "ore";
     private static final String BLOB_KEY = "blob";
@@ -27,19 +23,7 @@ public class Ore extends ActiveEntity {
         super(ID, position, IMAGES, ACTIONPERIOD);
     }
 
-
-
-//    protected void scheduleActions(
-//            EventScheduler scheduler,
-//            WorldModel world,
-//            ImageStore imageStore)
-//    {
-//                scheduler.scheduleEvent(this,
-//                        Factory.createActivityAction(this, world, imageStore),
-//                        ACTIONPERIOD);
-//    }
-
-    protected void executeActivity(
+    protected void _executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -60,17 +44,4 @@ public class Ore extends ActiveEntity {
         blob.scheduleActions(scheduler, world, imageStore);
     }
 
-//    public PImage getCurrentImage() {
-//        return (IMAGES.get(imageIndex));
-//    }
-//
-//    public Point getPosition()
-//    {
-//        return position;
-//    }
-//
-//    public void setPosition(Point position)
-//    {
-//        this.position = position;
-//    }
 }

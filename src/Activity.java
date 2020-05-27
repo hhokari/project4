@@ -16,7 +16,7 @@ public class Activity extends Action {
     protected void executeAction(
             EventScheduler scheduler)
     {
-                ENTITY.executeActivity(WORLD,
+                ENTITY._executeActivity(WORLD,
                         IMAGESTORE, scheduler);
     }
 

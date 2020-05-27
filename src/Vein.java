@@ -6,11 +6,7 @@ import java.util.Random;
 
 
 public class Vein extends ActiveEntity {
-//    private final String ID;
-//    private Point position;
-//    private final List<PImage> IMAGES ;
-//    private int imageIndex;
-//    private final int ACTIONPERIOD;
+
     private static final String ORE_ID_PREFIX = "ore -- ";
     private static final int ORE_CORRUPT_MIN = 20000;
     private static final Random RAND = new Random();
@@ -26,17 +22,8 @@ public class Vein extends ActiveEntity {
         super(ID, position, IMAGES, ACTIONPERIOD);
     }
 
-//    protected void scheduleActions(
-//            EventScheduler scheduler,
-//            WorldModel world,
-//            ImageStore imageStore)
-//    {
-//                scheduler.scheduleEvent(this,
-//                        Factory.createActivityAction(this, world, imageStore),
-//                        ACTIONPERIOD);
-//    }
 
-    protected void executeActivity(
+    protected void _executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -56,19 +43,4 @@ public class Vein extends ActiveEntity {
                 Factory.createActivityAction(this, world, imageStore),
                 ACTIONPERIOD);
     }
-
-//    public PImage getCurrentImage() {
-//        return (IMAGES.get(imageIndex));
-//    }
-//
-//
-//    public Point getPosition()
-//    {
-//        return position;
-//    }
-//
-//    public void setPosition(Point position)
-//    {
-//        this.position = position;
-//    }
 }

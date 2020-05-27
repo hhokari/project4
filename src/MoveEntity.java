@@ -16,7 +16,7 @@ public abstract class MoveEntity extends AnimatedEntity {
         super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
     }
 
-    protected abstract Point nextPosition(WorldModel world, Point destPos);
+    protected abstract Point _nextPosition(WorldModel world, Point destPos);
 
     public boolean move(
             WorldModel world,
@@ -24,11 +24,11 @@ public abstract class MoveEntity extends AnimatedEntity {
             EventScheduler scheduler)
     {
         if (Functions.adjacent(position, target.getPosition())) {
-            moveHelper(world, target, scheduler);
+            _moveHelper(world, target, scheduler);
             return true;
         }
         else {
-            Point nextPos = nextPosition(world, target.getPosition());
+            Point nextPos = _nextPosition(world, target.getPosition());
 
             if (!position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -42,7 +42,7 @@ public abstract class MoveEntity extends AnimatedEntity {
         }
     }
 
-    protected abstract void moveHelper(WorldModel world, Entity target, EventScheduler scheduler);
+    protected abstract void _moveHelper(WorldModel world, Entity target, EventScheduler scheduler);
 
     public void scheduleActions(
             EventScheduler scheduler,

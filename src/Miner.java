@@ -19,7 +19,7 @@ public abstract class Miner extends MoveEntity {
         this.RESOURCELIMIT = RESOURCELIMIT;
     }
 
-    protected void moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+    protected void _moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
     }
 
 

@@ -17,7 +17,7 @@ public abstract class ActiveEntity extends Entity {
         this.ACTIONPERIOD = ACTIONPERIOD;
     }
 
-    protected abstract void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler);
+    protected abstract void _executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler);
 
     public void scheduleActions(
             EventScheduler scheduler,
