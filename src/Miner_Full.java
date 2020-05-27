@@ -65,9 +65,6 @@ public class Miner_Full extends Miner {
 //        }
 //    }
 
-    protected void moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
-    }
-
 
     protected void transformFull(
             WorldModel world,

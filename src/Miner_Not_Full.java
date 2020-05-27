@@ -77,8 +77,10 @@ public class Miner_Not_Full extends Miner {
 //        }
 //    }
 
-
     protected void moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+        resourceCount += 1;
+        world.removeEntity(target);
+        scheduler.unscheduleAllEvents(target);
     }
 
     protected boolean transformNotFull(
