@@ -353,9 +353,9 @@
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="abstract" use3DEffect="true">
             <y:AttributeLabel xml:space="preserve">#ANIMATIONPERIOD: int
 #imageIndex: int</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+nextImage()
+            <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage
 +getAnimationPeriod(): int
-+getCurrentImage(): PImage</y:MethodLabel>
++nextImage()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -372,10 +372,9 @@
             <y:AttributeLabel xml:space="preserve">#ID: String
 #position: Point
 #IMAGES: List&lt;PImage&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+getPosition(): Point
-+setPosition(position: Point)
-+getCurrentImage(): PImage
-</y:MethodLabel>
+            <y:MethodLabel xml:space="preserve">+getCurrentImage(): PImage
++getPosition(): Point
++setPosition(position: Point)</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -423,7 +422,7 @@
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="50.9599609375" x="96.03863995982942" xml:space="preserve" y="3.0">Activity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">-ENTITY: Execute
+            <y:AttributeLabel xml:space="preserve">-ENTITY: ActiveEntity
 -WORLD: WorldModel
 -IMAGESTORE: ImageStore</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">#executeAction(scheduler: EventScheduler)</y:MethodLabel>
@@ -440,7 +439,7 @@
           <y:BorderStyle color="#000000" type="line" width="7.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="67.552734375" x="87.74225324107942" xml:space="preserve" y="3.0">Animation<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel xml:space="preserve">-ENTITY: Animate
+            <y:AttributeLabel xml:space="preserve">-ENTITY: AnimatedEntity
 -REPEATCOUNT: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">#executeAction(scheduler: EventScheduler)</y:MethodLabel>
           </y:UML>
@@ -725,18 +724,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e9" source="n21" target="n15">
-      <data key="d8" xml:space="preserve"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
-          <y:Arrows source="none" target="white_delta"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e10" source="n14" target="n13">
+    <edge id="e9" source="n14" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -747,7 +735,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e11" source="n13" target="n5">
+    <edge id="e10" source="n13" target="n5">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -758,7 +746,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e12" source="n1" target="n13">
+    <edge id="e11" source="n1" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -769,7 +757,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e13" source="n7" target="n13">
+    <edge id="e12" source="n7" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -780,7 +768,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e14" source="n1" target="n11">
+    <edge id="e13" source="n1" target="n11">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -791,7 +779,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e15" source="n20" target="n27">
+    <edge id="e14" source="n21" target="n27">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -802,7 +790,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e16" source="n21" target="n27">
+    <edge id="e15" source="n24" target="n15">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -813,7 +801,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e17" source="n24" target="n15">
+    <edge id="e16" source="n26" target="n14">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -824,7 +812,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e18" source="n26" target="n14">
+    <edge id="e17" source="n25" target="n12">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -835,7 +823,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e19" source="n25" target="n12">
+    <edge id="e18" source="n23" target="n14">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -846,7 +834,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e20" source="n23" target="n14">
+    <edge id="e19" source="n22" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -857,7 +845,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e21" source="n22" target="n13">
+    <edge id="e20" source="n18" target="n13">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -868,7 +856,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e22" source="n18" target="n13">
+    <edge id="e21" source="n15" target="n12">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -879,7 +867,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e23" source="n15" target="n12">
+    <edge id="e22" source="n27" target="n15">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -890,7 +878,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e24" source="n27" target="n15">
+    <edge id="e23" source="n12" target="n14">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -901,7 +889,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e25" source="n12" target="n14">
+    <edge id="e24" source="n16" target="n11">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -912,7 +900,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e26" source="n16" target="n11">
+    <edge id="e25" source="n17" target="n11">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -923,7 +911,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e27" source="n17" target="n11">
+    <edge id="e26" source="n26" target="n14">
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
@@ -934,7 +922,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e28" source="n26" target="n14">
+    <edge id="e27" source="n20" target="n27">
       <data key="d8" xml:space="preserve"/>
       <data key="d9"/>
       <data key="d10">
@@ -946,7 +934,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e29" source="n26" target="n14">
+    <edge id="e28" source="n26" target="n14">
       <data key="d8" xml:space="preserve"/>
       <data key="d9"/>
       <data key="d10">
