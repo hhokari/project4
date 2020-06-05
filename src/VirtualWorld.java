@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import processing.core.*;
 
+import javax.swing.text.View;
+
 public final class VirtualWorld extends PApplet
 {
     private static final int TIMER_ACTION_PERIOD = 100;
@@ -97,7 +99,23 @@ public final class VirtualWorld extends PApplet
                     break;
             }
             view.shiftView(dx, dy);
+            view.getViewport().shift(dx, dy);
+//            mouseX = mouseX + dx;
+//            mouseY = mouseY + dy;
+            mousePressed();
         }
+//        mousePressed();
+    }
+
+    public void mousePressed() {
+        Point pressed = mouseToPoint(mouseX, mouseY);
+//        Point movedPoint = viewport.viewportToWorld(viewport, pressed.X, pressed.Y);
+        world.setBackground(pressed, new Background("wyvern", imageStore.getImageList(
+                "wyvern")));
+    }
+
+    private Point mouseToPoint(int x, int y) {
+        return new Point(mouseX/ TILE_WIDTH, mouseY/ TILE_HEIGHT);
     }
 
     private static Background createDefaultBackground(ImageStore imageStore) {

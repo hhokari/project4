@@ -70,4 +70,8 @@ public final class WorldView
         drawBackground();
         drawEntities();
     }
+
+    public Viewport getViewport() {
+        return VIEWPORT;
+    }
 }
