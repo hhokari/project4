@@ -8,7 +8,8 @@ import processing.core.*;
 
 import javax.swing.text.View;
 
-public final class VirtualWorld extends PApplet
+public final class
+VirtualWorld extends PApplet
 {
     private static final int TIMER_ACTION_PERIOD = 100;
 

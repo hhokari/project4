@@ -82,4 +82,14 @@ public class Factory {
     {
         return new Vein(id, position, images, actionPeriod);
     }
+
+    public static Eyeball createEyeball(
+            String id,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Eyeball(id, position, images, actionPeriod, animationPeriod);
+    }
 }
