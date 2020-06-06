@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import processing.core.*;
@@ -99,23 +101,33 @@ public final class VirtualWorld extends PApplet
                     break;
             }
             view.shiftView(dx, dy);
-            view.getViewport().shift(dx, dy);
-//            mouseX = mouseX + dx;
-//            mouseY = mouseY + dy;
-            mousePressed();
         }
-//        mousePressed();
     }
 
     public void mousePressed() {
         Point pressed = mouseToPoint(mouseX, mouseY);
-//        Point movedPoint = viewport.viewportToWorld(viewport, pressed.X, pressed.Y);
-        world.setBackground(pressed, new Background("wyvern", imageStore.getImageList(
-                "wyvern")));
+        List<Point> pointList = new ArrayList<>();
+        pointList.add(new Point(0, 0));
+        pointList.add(new Point(0, 1));
+        pointList.add(new Point(1, 1));
+        pointList.add(new Point(1, 0));
+        pointList.add(new Point(1, -1));
+        pointList.add(new Point(0, -1));
+        pointList.add(new Point(-1, -1));
+        pointList.add(new Point(-1, 0));
+        pointList.add(new Point(-1, 1));
+        for (Point point : pointList) {
+            Point temp = new Point(pressed.X, pressed.Y);
+            temp.X = temp.X + point.X;
+            temp.Y = temp.Y + point.Y;
+            world.setBackground(temp, new Background("wyvern", imageStore.getImageList(
+                    "wyvern")));
+        }
     }
 
+
     private Point mouseToPoint(int x, int y) {
-        return new Point(mouseX/ TILE_WIDTH, mouseY/ TILE_HEIGHT);
+        return view.getViewport().viewportToWorld(view.getViewport(),x/TILE_WIDTH, y/TILE_HEIGHT);
     }
 
     private static Background createDefaultBackground(ImageStore imageStore) {
