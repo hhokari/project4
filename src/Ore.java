@@ -40,17 +40,7 @@ public class Ore extends ActiveEntity {
                                 - BLOB_ANIMATION_MIN),
                 imageStore.getImageList(BLOB_KEY));
 
-        //addded code
-//        Eyeball eyeball = Factory.createEyeball(ID + BLOB_ID_SUFFIX, pos,
-//                ACTIONPERIOD / BLOB_PERIOD_SCALE,
-//                BLOB_ANIMATION_MIN + RAND.nextInt(
-//                        BLOB_ANIMATION_MAX
-//                                - BLOB_ANIMATION_MIN),
-//                imageStore.getImageList(EYEBALL_KEY));
-
         world.addEntity(blob);
-//        world.addEntity(eyeball);
-//        eyeball.scheduleActions(scheduler, world, imageStore);
         blob.scheduleActions(scheduler, world, imageStore);
     }
 
