@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import processing.core.*;
@@ -37,6 +38,13 @@ VirtualWorld extends PApplet
     private static final double FAST_SCALE = 0.5;
     private static final double FASTER_SCALE = 0.25;
     private static final double FASTEST_SCALE = 0.10;
+    //added
+    private static final Random RAND = new Random();
+    private static final String EYEBALL_KEY = "eyeball";
+    private static final String EYEBALL_ID_SUFFIX = " -- blob";
+    private static final int EYEBALL_PERIOD_SCALE = 4;
+    private static final int EYEBALL_ANIMATION_MIN = 50;
+    private static final int EYEBALL_ANIMATION_MAX = 150;
 
     private static double timeScale = 1.0;
 
@@ -117,6 +125,7 @@ VirtualWorld extends PApplet
         pointList.add(new Point(-1, -1));
         pointList.add(new Point(-1, 0));
         pointList.add(new Point(-1, 1));
+
         for (Point point : pointList) {
             Point temp = new Point(pressed.X, pressed.Y);
             temp.X = temp.X + point.X;
@@ -124,6 +133,16 @@ VirtualWorld extends PApplet
             world.setBackground(temp, new Background("wyvern", imageStore.getImageList(
                     "wyvern")));
         }
+
+        Eyeball eyeball = Factory.createEyeball("eyeball" + EYEBALL_ID_SUFFIX, pressed,
+                200 / EYEBALL_PERIOD_SCALE,
+                EYEBALL_ANIMATION_MIN + RAND.nextInt(
+                        EYEBALL_ANIMATION_MAX
+                                - EYEBALL_ANIMATION_MIN),
+                imageStore.getImageList(EYEBALL_KEY));
+
+        world.addEntity(eyeball);
+        eyeball.scheduleActions(scheduler, world, imageStore);
     }
 
 

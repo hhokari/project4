@@ -53,7 +53,7 @@ public class Eyeball extends MoveEntity {
             EventScheduler scheduler)
     {
         Optional<Entity> blobTarget =
-                world.findNearest(position, Vein.class);
+                world.findNearest(position, Blacksmith.class);
         long nextPeriod = ACTIONPERIOD;
 
         if (blobTarget.isPresent()) {
