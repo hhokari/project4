@@ -45,6 +45,7 @@ VirtualWorld extends PApplet
     private static final int EYEBALL_PERIOD_SCALE = 4;
     private static final int EYEBALL_ANIMATION_MIN = 50;
     private static final int EYEBALL_ANIMATION_MAX = 150;
+    private static final String REDEYEBALL_KEY = "redeyeball";
 
     private static double timeScale = 1.0;
 
@@ -134,7 +135,7 @@ VirtualWorld extends PApplet
                     "wyvern")));
         }
 
-        Eyeball eyeball = Factory.createEyeball("eyeball" + EYEBALL_ID_SUFFIX, pressed,
+        Eyeball eyeball = Factory.createEyeball("eyeball" + EYEBALL_ID_SUFFIX, 0, pressed,
                 200 / EYEBALL_PERIOD_SCALE,
                 EYEBALL_ANIMATION_MIN + RAND.nextInt(
                         EYEBALL_ANIMATION_MAX
@@ -143,6 +144,12 @@ VirtualWorld extends PApplet
 
         world.addEntity(eyeball);
         eyeball.scheduleActions(scheduler, world, imageStore);
+        eyeball.transform(world, scheduler, imageStore);
+//        scheduler.unscheduleAllEvents(eyeball);
+//        world.removeEntity(eyeball);
+//        RedEyeball redEyeball = Factory.createRedEyeball("redeyeball", eyeball.position, imageStore.getImageList(REDEYEBALL_KEY));
+//        world.addEntity(redEyeball);
+//        world.removeEntity(redEyeball);
     }
 
 

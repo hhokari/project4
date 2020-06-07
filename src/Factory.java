@@ -85,11 +85,20 @@ public class Factory {
 
     public static Eyeball createEyeball(
             String id,
+            int resourceLimit,
             Point position,
             int actionPeriod,
             int animationPeriod,
             List<PImage> images)
     {
-        return new Eyeball(id, position, images, actionPeriod, animationPeriod);
+        return new Eyeball(id, position, images, resourceLimit, 0, animationPeriod);
+    }
+
+    public static RedEyeball createRedEyeball(
+            String id,
+            Point position,
+            List<PImage> images)
+    {
+        return new RedEyeball(id, position, images);
     }
 }

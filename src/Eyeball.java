@@ -4,16 +4,20 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class Eyeball extends MoveEntity {
+public class Eyeball extends Miner {
+
+    private int destroyedBlackSmithCount;
 
     public Eyeball(
             final String ID,
             Point position,
             final List<PImage> IMAGES,
+            final int RESOURCELIMIT,
             final int ACTIONPERIOD,
             final int ANIMATIONPERIOD)
     {
-        super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
+        super(ID, position, IMAGES, RESOURCELIMIT, ACTIONPERIOD, ANIMATIONPERIOD);
+        this.destroyedBlackSmithCount = 0;
     }
 
     protected Point _nextPosition(
@@ -42,36 +46,48 @@ public class Eyeball extends MoveEntity {
     }
 
     protected void _moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
+        destroyedBlackSmithCount += 1;
         world.removeEntity(target);
         scheduler.unscheduleAllEvents(target);
     }
 
+
+    protected boolean transform(
+            WorldModel world,
+            EventScheduler scheduler,
+            ImageStore imageStore)
+    {
+        if (destroyedBlackSmithCount > 0) {
+            RedEyeball redEyeball = Factory.createRedEyeball("redeyeball",
+                    position,
+                    imageStore.getImageList("redeyeball"));
+
+            world.removeEntity(redEyeball);
+            scheduler.unscheduleAllEvents(this);
+
+            world.addEntity(redEyeball);
+
+            return true;
+        }
+
+        return false;
+    }
 
     protected void _executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
     {
-        Optional<Entity> blobTarget =
+        Optional<Entity> notFullTarget =
                 world.findNearest(position, Blacksmith.class);
-        long nextPeriod = ACTIONPERIOD;
 
-        if (blobTarget.isPresent()) {
-            Point tgtPos = blobTarget.get().getPosition();
-
-            if (move(world, blobTarget.get(), scheduler)) {
-                Quake quake = Factory.createQuake(tgtPos,
-                        imageStore.getImageList(Functions.QUAKE_KEY));
-
-                world.addEntity(quake);
-                nextPeriod += ACTIONPERIOD;
-                quake.scheduleActions(scheduler, world, imageStore);
-            }
+        if (!notFullTarget.isPresent() || !move(world, notFullTarget.get(),
+                scheduler)
+                || !transform(world, scheduler, imageStore))
+        {
+            scheduler.scheduleEvent(this,
+                    Factory.createActivityAction(this, world, imageStore),
+                    ACTIONPERIOD);
         }
-
-        scheduler.scheduleEvent(this,
-                Factory.createActivityAction(this, world, imageStore),
-                nextPeriod);
     }
-
 }
