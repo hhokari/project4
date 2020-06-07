@@ -91,7 +91,7 @@ public class Factory {
             int animationPeriod,
             List<PImage> images)
     {
-        return new Eyeball(id, position, images, resourceLimit, 0, animationPeriod);
+        return new Eyeball(id, position, images, resourceLimit, actionPeriod, animationPeriod);
     }
 
     public static RedEyeball createRedEyeball(

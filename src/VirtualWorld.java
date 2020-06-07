@@ -145,11 +145,6 @@ VirtualWorld extends PApplet
         world.addEntity(eyeball);
         eyeball.scheduleActions(scheduler, world, imageStore);
         eyeball.transform(world, scheduler, imageStore);
-//        scheduler.unscheduleAllEvents(eyeball);
-//        world.removeEntity(eyeball);
-//        RedEyeball redEyeball = Factory.createRedEyeball("redeyeball", eyeball.position, imageStore.getImageList(REDEYEBALL_KEY));
-//        world.addEntity(redEyeball);
-//        world.removeEntity(redEyeball);
     }
 
 
