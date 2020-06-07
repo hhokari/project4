@@ -24,8 +24,18 @@ quake images/quake5.bmp 255 255 255 0
 quake images/quake6.bmp 255 255 255 0
 ore images/ore.bmp 201 26 26 0
 obstacle images/obstacle.bmp
+eyeball images/eyeball1.bmp 255 255 255 0
+eyeball images/eyeball2.bmp 255 255 255 0
+eyeball images/eyeball3.bmp 255 255 255 0
+eyeball images/eyeball4.bmp 255 255 255 0
+eyeball images/eyeball5.bmp 255 255 255 0
+eyeball images/eyeball6.bmp 255 255 255 0
+eyeball images/eyeball7.bmp 255 255 255 0
+eyeball images/eyeball8.bmp 255 255 255 0
+redeyeball images/redeyeball.bmp 255 255 255 0
 grass images/grass.bmp
 rocks images/rock.bmp
 dirt images/dirt.bmp
 vein images/vein.bmp
 background_default images/none.bmp
+wyvern images/wyvern1.bmp
