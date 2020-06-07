@@ -87,7 +87,6 @@ public class Factory {
             String id,
             int resourceLimit,
             Point position,
-            int actionPeriod,
             int animationPeriod,
             List<PImage> images)
     {
