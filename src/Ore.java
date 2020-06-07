@@ -9,7 +9,6 @@ public class Ore extends ActiveEntity {
     private static final Random RAND = new Random();
     public static final String ORE_KEY = "ore";
     private static final String BLOB_KEY = "blob";
-    private static final String EYEBALL_KEY = "eyeball";
     private static final String BLOB_ID_SUFFIX = " -- blob";
     private static final int BLOB_PERIOD_SCALE = 4;
     private static final int BLOB_ANIMATION_MIN = 50;
