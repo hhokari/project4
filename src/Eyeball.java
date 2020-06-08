@@ -4,20 +4,19 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class Eyeball extends Miner {
+public class Eyeball extends ResourceCountEntity {
 
-    private int destroyedBlackSmithCount;
 
     public Eyeball(
             final String ID,
             Point position,
             final List<PImage> IMAGES,
             final int RESOURCELIMIT,
+            int resourceCount,
             final int ACTIONPERIOD,
             final int ANIMATIONPERIOD)
     {
-        super(ID, position, IMAGES, RESOURCELIMIT, ACTIONPERIOD, ANIMATIONPERIOD);
-        this.destroyedBlackSmithCount = 0;
+        super(ID, position, IMAGES, RESOURCELIMIT, resourceCount, ACTIONPERIOD, ANIMATIONPERIOD);
     }
 
     protected Point _nextPosition(
@@ -45,19 +44,13 @@ public class Eyeball extends Miner {
         return newPos;
     }
 
-    protected void _moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
-        destroyedBlackSmithCount += 1;
-        world.removeEntity(target);
-        scheduler.unscheduleAllEvents(target);
-    }
-
 
     protected boolean transform(
             WorldModel world,
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        if (destroyedBlackSmithCount > 0) {
+        if (resourceCount > 0) {
             RedEyeball redEyeball = Factory.createRedEyeball("redeyeball",
                     position,
                     imageStore.getImageList("redeyeball"));
@@ -73,21 +66,15 @@ public class Eyeball extends Miner {
         return false;
     }
 
-    protected void _executeActivity(
+    protected boolean _executeActivityHelper(
             WorldModel world,
-            ImageStore imageStore,
-            EventScheduler scheduler)
+            EventScheduler scheduler,
+            ImageStore imageStore)
     {
-        Optional<Entity> notFullTarget =
-                world.findNearest(position, Blacksmith.class);
+        return transform(world, scheduler, imageStore);
+    }
 
-        if (!notFullTarget.isPresent() || !move(world, notFullTarget.get(),
-                scheduler)
-                || !transform(world, scheduler, imageStore))
-        {
-            scheduler.scheduleEvent(this,
-                    Factory.createActivityAction(this, world, imageStore),
-                    ACTIONPERIOD);
-        }
+    protected Optional<Entity> _executeActivityHelper2(WorldModel world) {
+        return world.findNearest(position, Blacksmith.class);
     }
 }

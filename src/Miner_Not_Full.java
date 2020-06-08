@@ -3,8 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Miner_Not_Full extends Miner {
-    private int resourceCount;
+public class Miner_Not_Full extends ResourceCountEntity {
 
     public Miner_Not_Full(
             String ID,
@@ -15,8 +14,7 @@ public class Miner_Not_Full extends Miner {
             int ACTIONPERIOD,
             int ANIMATIONPERIOD)
     {
-        super(ID, position, IMAGES, RESOURCELIMIT, ACTIONPERIOD, ANIMATIONPERIOD);
-        this.resourceCount = resourceCount;
+        super(ID, position, IMAGES, RESOURCELIMIT, resourceCount, ACTIONPERIOD, ANIMATIONPERIOD);
     }
 
     protected Point _nextPosition(
@@ -35,12 +33,6 @@ public class Miner_Not_Full extends Miner {
         }
 
         return newPos;
-    }
-
-    protected void _moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {
-        resourceCount += 1;
-        world.removeEntity(target);
-        scheduler.unscheduleAllEvents(target);
     }
 
     protected boolean transformNotFull(
@@ -66,22 +58,15 @@ public class Miner_Not_Full extends Miner {
         return false;
     }
 
-    protected void _executeActivity(
+    protected boolean _executeActivityHelper(
             WorldModel world,
-            ImageStore imageStore,
-            EventScheduler scheduler)
+            EventScheduler scheduler,
+            ImageStore imageStore)
     {
-        Optional<Entity> notFullTarget =
-                world.findNearest(position, Ore.class);
-
-        if (!notFullTarget.isPresent() || !move(world, notFullTarget.get(),
-                scheduler)
-                || !transformNotFull(world, scheduler, imageStore))
-        {
-            scheduler.scheduleEvent(this,
-                    Factory.createActivityAction(this, world, imageStore),
-                    ACTIONPERIOD);
-        }
+        return transformNotFull(world, scheduler, imageStore);
     }
 
+    protected Optional<Entity> _executeActivityHelper2(WorldModel world) {
+        return world.findNearest(position, Ore.class);
+    }
 }
