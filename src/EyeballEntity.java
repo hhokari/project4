@@ -1,6 +1,3 @@
-/* abstract class made for:
-    Eyeball & Miner_Not_Full
- */
 import processing.core.PImage;
 
 import java.util.List;

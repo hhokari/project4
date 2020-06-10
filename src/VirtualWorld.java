@@ -4,8 +4,6 @@ import java.util.*;
 
 import processing.core.*;
 
-import javax.swing.text.View;
-
 public final class
 VirtualWorld extends PApplet
 {
@@ -35,7 +33,6 @@ VirtualWorld extends PApplet
     private static final double FAST_SCALE = 0.5;
     private static final double FASTER_SCALE = 0.25;
     private static final double FASTEST_SCALE = 0.10;
-    //added
     private static final Random RAND = new Random();
     private static final String EYEBALL_KEY = "eyeball";
     private static final String EYEBALL_ID_SUFFIX = " -- blob";
