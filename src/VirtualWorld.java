@@ -134,11 +134,13 @@ VirtualWorld extends PApplet
                 imageStore.getImageList(EYEBALL_KEY));
 
         Optional<Entity> occupant = world.getOccupant(pressed);
+        if (occupant.isPresent() == false) {
+            world.addEntity(eyeball);
+            eyeball.scheduleActions(scheduler, world, imageStore);
+        }
         if (occupant.isPresent() && occupant.get().getClass() != Obstacle.class) {
             scheduler.unscheduleAllEvents(occupant.get());
             world.removeEntity(occupant.get());
-            world.addEntity(eyeball);
-            eyeball.scheduleActions(scheduler, world, imageStore);
         }
 
         List<Point> radiusList = new ArrayList<>();
