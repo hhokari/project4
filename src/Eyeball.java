@@ -11,24 +11,22 @@ public class Eyeball extends MoveEntity {
     {
         super(ID, position, IMAGES, ACTIONPERIOD, ANIMATIONPERIOD);
     }
+
     protected Point _nextPosition(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.X - position.X);
         Point newPos = new Point(position.X + horiz, position.Y);
-        Optional<Entity> occupant = world.getOccupant(newPos);
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
-                == Ore.class)))
-        {
+
+        if (horiz == 0 || world.isOccupied(newPos)) {
             int vert = Integer.signum(destPos.Y - position.Y);
             newPos = new Point(position.X, position.Y + vert);
-            occupant = world.getOccupant(newPos);
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
-                    == Ore.class)))
-            {
+
+            if (vert == 0 || world.isOccupied(newPos)) {
                 newPos = position;
             }
         }
+
         return newPos;
     }
     protected void _moveHelper(WorldModel world, Entity target, EventScheduler scheduler) {

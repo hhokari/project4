@@ -79,6 +79,16 @@ public class Factory {
     {
         return new Eyeball(id, position, images, actionPeriod, animationPeriod);
     }
+
+    public static RedEyeball createRedEyeball(
+            String id,
+            Point position,
+            List<PImage> images,
+            int actionPeriod,
+            int animationPeriod)
+    {
+        return new RedEyeball(id, position, images, actionPeriod, animationPeriod);
+    }
 }
 /*
 import processing.core.PImage;

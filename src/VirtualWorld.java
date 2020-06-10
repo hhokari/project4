@@ -1,9 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 import processing.core.*;
 
@@ -127,9 +124,7 @@ VirtualWorld extends PApplet
         pointList.add(new Point(-1, 1));
 
         for (Point point : pointList) {
-            Point temp = new Point(pressed.X, pressed.Y);
-            temp.X = temp.X + point.X;
-            temp.Y = temp.Y + point.Y;
+            Point temp = new Point(pressed.X + point.X, pressed.Y + point.Y);
             world.setBackground(temp, new Background("wyvern", imageStore.getImageList(
                     "wyvern")));
         }
@@ -143,6 +138,50 @@ VirtualWorld extends PApplet
 
         world.addEntity(eyeball);
         eyeball.scheduleActions(scheduler, world, imageStore);
+
+        List<Point> radiusList = new ArrayList<>();
+        radiusList.add(new Point(0, 0));
+        radiusList.add(new Point(0, 1));
+        radiusList.add(new Point(1, 1));
+        radiusList.add(new Point(1, 0));
+        radiusList.add(new Point(1, -1));
+        radiusList.add(new Point(0, -1));
+        radiusList.add(new Point(-1, -1));
+        radiusList.add(new Point(-1, 0));
+        radiusList.add(new Point(-1, 1));
+
+        radiusList.add(new Point(0, 2));
+        radiusList.add(new Point(1, 2));
+        radiusList.add(new Point(2, 2));
+        radiusList.add(new Point(2, 1));
+        radiusList.add(new Point(2, 0));
+        radiusList.add(new Point(2, -1));
+        radiusList.add(new Point(2, -2));
+        radiusList.add(new Point(1, -2));
+        radiusList.add(new Point(0, -2));
+        radiusList.add(new Point(-1, -2));
+        radiusList.add(new Point(-2, -2));
+        radiusList.add(new Point(-2, -1));
+        radiusList.add(new Point(-2, 0));
+        radiusList.add(new Point(-2, 1));
+        radiusList.add(new Point(-2, 2));
+        radiusList.add(new Point(-1, 2));
+        for (Point p : radiusList) {
+            p.X += pressed.X;
+            p.Y += pressed.Y;
+        }
+        Set<Entity> entitiesSet = world.getentities();
+        List<Entity> entitiesList = new ArrayList<>();
+        entitiesList.addAll(entitiesSet);
+        for (Entity entity : entitiesList) {
+            if (entity.getClass() == Ore_Blob.class) {
+                for (Point points : radiusList) {
+                    if (entity.getPosition().equals(points)) {
+                        ((Ore_Blob) entity).transform(world, scheduler, imageStore);
+                    }
+                }
+            }
+        }
     }
 
 

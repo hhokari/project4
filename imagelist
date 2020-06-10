@@ -32,7 +32,8 @@ eyeball images/eyeball5.bmp 255 255 255 0
 eyeball images/eyeball6.bmp 255 255 255 0
 eyeball images/eyeball7.bmp 255 255 255 0
 eyeball images/eyeball8.bmp 255 255 255 0
-redeyeball images/redeyeball.bmp 255 255 255 0
+redeyeball images/redeyeball1.bmp 255 255 255 0
+redeyeball images/redeyeball2.bmp 255 255 255 0
 grass images/grass.bmp
 rocks images/rock.bmp
 dirt images/dirt.bmp

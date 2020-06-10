@@ -74,4 +74,19 @@ public class Ore_Blob extends MoveEntity {
                 nextPeriod);
     }
 
+    protected void transform(
+            WorldModel world,
+            EventScheduler scheduler,
+            ImageStore imageStore)
+    {
+        RedEyeball redEyeBall = Factory.createRedEyeball("redeyeball",
+                position, imageStore.getImageList("redeyeball"), ACTIONPERIOD,
+                ANIMATIONPERIOD);
+
+        world.removeEntity(redEyeBall);
+        scheduler.unscheduleAllEvents(this);
+
+        world.addEntity(redEyeBall);
+        redEyeBall.scheduleActions(scheduler, world, imageStore);
+    }
 }
