@@ -1,0 +1,35 @@
+﻿1. how to trigger the event
+        The event is triggered by a mouse click in the virtual world. 
+
+2. what should happen when the event is triggered
+        When the event is triggered, the background tiles in a 1 tile radius 
+	away from the mouse click turn into wyverns. However, if there are any ore blobs 
+	that are in a 2 tile radius away from the mouse click in any direction, they will 
+	transform into a new entity which is explained in the following question. 
+
+3. what the affected entities should do
+        The entities that are affected by the event are the ore blobs. If they are in the 
+	set radius of 2 tiles away in any direction from the mouse click, they will transform 
+	into red eyeballs with veins. In terms of their role, they seek and destroy “normal” 
+	eyeballs in its proximity one after another. The speed at which it travels is relatively 
+	slow for entertainment purposes.
+
+4. what the new entity is and how it should behave
+	The new entity is an eyeball which was created from scratch. Upon (each and every) mouseclick, 
+	it will appear. In terms of behavior, it will try to seek and destroy a blacksmith (blacksmith disappears) 
+	in its proximity one after another. While it is moving from the point of the mouse click to the blacksmith,
+	the eye should be looking around in a counterclockwise fashion. The speed at which it travels is overall quick. 
+
+5. (if applicable) the names of each partner and what each partner was responsible for
+Harumi 
+* Drew out and created both the transformed entity (red eyeball) and the completely new entity (eyeball) 
+  using photo editing software. I made multiple bmp files to make it look as if both of these were animating.  
+* Programmed the functionality for the interpretation of the mouse click and background tiles in the set 
+  radius from the mouse click, 1 tile in any direction, to change.
+* Developed the code for the behavior/action and appearance of the new entity (eyeball) based on the mouse click. 
+
+
+Rachel
+* Planned out the logic for new entity and effect when restarting our code
+* Worked to create the red eyeball class and troubleshoot ways to integrate both the eyeball and red eyeball class into the program. 
+* Refactored the code for the transform method for red eyeball and implement the transformation into Virtual World
